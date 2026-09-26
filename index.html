@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Elektronik.de · Tableau de bord hebdo</title>
+<style>
+:root{
+  color-scheme:light;
+  --page:#f4f3f6;--surface:#ffffff;--ink:#1f1b20;--ink2:#58545c;--muted:#8e8a93;
+  --grid:#ecebef;--axis:#d5d2d9;--border:rgba(31,27,32,.08);
+  --red:#ec4434;--redsoft:rgba(236,68,52,.10);--char:#1f1b20;--gray:#a9a5ae;
+  --good:#0f7b3a;--goodbg:rgba(15,123,58,.10);--warn:#9a6200;--warnbg:rgba(250,178,25,.18);--bad:#c0392b;--badbg:rgba(192,57,43,.10);
+  --info:#4a3aa7;--infobg:rgba(74,58,167,.10);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --page:#0d0b0e;--surface:#17131a;--ink:#ffffff;--ink2:#cfcad4;--muted:#8f8796;
+    --grid:#2a2330;--axis:#3a3140;--border:rgba(255,255,255,.08);
+    --red:#ef5646;--redsoft:rgba(239,86,70,.14);--char:#f2eff5;--gray:#7d7584;
+    --good:#2fbf6a;--goodbg:rgba(47,191,106,.14);--warn:#f5b83d;--warnbg:rgba(245,184,61,.14);--bad:#ff7a6b;--badbg:rgba(255,122,107,.14);
+    --info:#9085e9;--infobg:rgba(144,133,233,.16);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --page:#0d0b0e;--surface:#17131a;--ink:#ffffff;--ink2:#cfcad4;--muted:#8f8796;
+  --grid:#2a2330;--axis:#3a3140;--border:rgba(255,255,255,.08);
+  --red:#ef5646;--redsoft:rgba(239,86,70,.14);--char:#f2eff5;--gray:#7d7584;
+  --good:#2fbf6a;--goodbg:rgba(47,191,106,.14);--warn:#f5b83d;--warnbg:rgba(245,184,61,.14);--bad:#ff7a6b;--badbg:rgba(255,122,107,.14);
+  --info:#9085e9;--infobg:rgba(144,133,233,.16);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:15px/1.5 Arial,"Helvetica Neue",Helvetica,sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:26px 16px 48px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.kick{display:flex;align-items:center;gap:10px;color:var(--red);font-weight:700;font-size:12px;letter-spacing:.14em}
+.bars{display:inline-flex;flex-direction:column;gap:4px}.bars i{display:block;width:20px;height:4px;background:var(--red)}
+h1{font-size:30px;margin:8px 0 2px;line-height:1.2}
+.meta{color:var(--ink2);font-size:14px}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--redsoft);color:var(--red)}
+.tabs{display:flex;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:4px}
+.tabs button{font:inherit;font-size:13px;font-weight:700;border:0;background:transparent;color:var(--ink2);padding:6px 12px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:var(--red);color:#fff}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+@media (max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.kpis{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.kpi .l{font-size:12.5px;color:var(--ink2);font-weight:700;letter-spacing:.02em}
+.kpi .v{font-size:28px;font-weight:700;margin:4px 0 2px;line-height:1.15}
+.kpi .d{font-size:13px;color:var(--ink2)}
+.meter{height:8px;border-radius:99px;background:var(--grid);margin:10px 0 6px;position:relative;overflow:hidden}
+.meter i{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--red)}
+.meter b{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--char)}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.ok{background:var(--goodbg);color:var(--good)}.warn{background:var(--warnbg);color:var(--warn)}.ko{background:var(--badbg);color:var(--bad)}.inf{background:var(--infobg);color:var(--info)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media (max-width:980px){.row2{grid-template-columns:1fr}}
+h2{font-size:16px;margin:0 0 2px}
+.h2s{color:var(--ink2);font-size:13px;margin:0 0 10px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--ink2);margin:0 0 6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:3px;border-radius:2px;display:inline-block}
+.dash{width:16px;border-top:2px dashed var(--gray);display:inline-block}
+.dashr{width:16px;border-top:2px dashed var(--red);display:inline-block}
+svg{width:100%;height:auto;display:block;overflow:visible}
+svg text{fill:var(--muted);font-size:11px;font-family:Arial,sans-serif}
+.chartbox{position:relative}
+.tip{position:absolute;pointer-events:none;display:none;background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.14);padding:8px 10px;font-size:13px;min-width:190px;z-index:3}
+.tip b{display:block;margin-bottom:3px}.tip div{display:flex;justify-content:space-between;gap:12px;color:var(--ink2)}.tip em{font-style:normal;color:var(--ink);font-weight:700}
+.plan{display:grid;grid-template-columns:340px 1fr;gap:18px;align-items:start}
+@media (max-width:980px){.plan{grid-template-columns:1fr}}
+.ctl label{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:14px}
+.ctl label span{color:var(--red);white-space:nowrap}
+.ctl small{display:block;color:var(--muted);font-size:12.5px;margin-top:4px}
+input[type=range]{width:100%;accent-color:var(--red);margin:10px 0 0}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.presets button{font:inherit;font-size:12.5px;font-weight:700;border:1.5px solid var(--red);background:transparent;color:var(--red);padding:5px 10px;border-radius:999px;cursor:pointer}
+.presets button:hover{background:var(--red);color:#fff}
+.out{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:700px){.out{grid-template-columns:1fr}}
+.out div{background:var(--page);border-radius:12px;padding:12px 14px}
+.out .l{font-size:12.5px;color:var(--ink2)}.out .v{font-size:20px;font-weight:700;margin:2px 0}.out .d{font-size:12.5px;color:var(--ink2)}
+.note{background:var(--redsoft);border-radius:10px;padding:10px 12px;font-size:13px;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 8px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap}
+th{color:var(--ink2);font-weight:700;font-size:12.5px}
+th:first-child,td:first-child{text-align:left}
+.tbl{overflow-x:auto}
+.actions{list-style:none;margin:0;padding:0}
+.actions li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--grid);font-size:14px}
+.actions li:last-child{border-bottom:0}
+.actions small{display:block;color:var(--muted);font-size:12px}
+.need li{padding:6px 0;border-bottom:1px solid var(--grid);font-size:14px;list-style:none}
+.need{margin:0;padding:0}.need li:last-child{border-bottom:0}
+.nextcall{display:flex;gap:12px;align-items:center;background:var(--page);border-radius:12px;padding:12px 14px;margin-top:12px}
+.nextcall b{font-size:18px}
+footer{color:var(--muted);font-size:12.5px;margin-top:22px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="kick"><span class="bars"><i></i><i></i></span>TABLEAU DE BORD HEBDO · RETARGETING</div>
+      <h1>Elektronik.de</h1>
+      <div class="meta">Données du 1er au 15 janvier 2026 · Mis à jour chaque lundi · 1 PLN = 0,22 € <span class="badge">Maquette</span></div>
+    </div>
+    <div class="tabs" role="group" aria-label="Devise">
+      <button data-c="PLN" class="on">PLN</button><button data-c="EUR">€</button>
+    </div>
+  </header>
+
+  <section class="kpis">
+    <div class="card kpi">
+      <div class="l">BUDGET DE JANVIER</div>
+      <div class="v" id="k1"></div>
+      <div class="meter" aria-hidden="true"><i id="k1m"></i><b id="k1t"></b></div>
+      <div class="d" id="k1d"></div>
+    </div>
+    <div class="card kpi">
+      <div class="l">FIN DE MOIS AU RYTHME ACTUEL</div>
+      <div class="v" id="k2"></div>
+      <div class="d" id="k2d"></div>
+    </div>
+    <div class="card kpi">
+      <div class="l">ROAS (OBJECTIF 40)</div>
+      <div class="v"><span id="k3a"></span> <span style="font-size:15px;color:var(--ink2);font-weight:400">vos chiffres</span></div>
+      <div class="d" id="k3d"></div>
+    </div>
+    <div class="card kpi">
+      <div class="l">VENTES GRÂCE À NOUS, 1ER–14 JANV.</div>
+      <div class="v" id="k4"></div>
+      <div class="d" id="k4d"></div>
+    </div>
+  </section>
+
+  <section class="row2">
+    <div class="card">
+      <h2>Rythme de dépense</h2>
+      <p class="h2s">Réel jour par jour, puis la fin de mois si le rythme actuel continue.</p>
+      <div class="legend"><span><i class="sw" style="background:var(--red)"></i>Réel</span><span><i class="dashr"></i>Si le rythme continue</span><span><i class="dash"></i>Rythme pour tout dépenser</span></div>
+      <div class="chartbox" id="c1"></div>
+    </div>
+    <div class="card">
+      <h2>ROAS jour par jour</h2>
+      <p class="h2s">Les deux mesures, face à l'objectif. L'écart doit se refermer une fois le suivi corrigé.</p>
+      <div class="legend"><span><i class="sw" style="background:var(--char)"></i>Vos chiffres</span><span><i class="sw" style="background:var(--red)"></i>Nos chiffres</span><span><i class="dash"></i>Objectif 40</span></div>
+      <div class="chartbox" id="c2"></div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-bottom:16px">
+    <h2>Anticiper la fin du mois</h2>
+    <p class="h2s">Choisissez une dépense par jour du 16 au 31 janvier : vous voyez tout de suite où vous finissez, et une fourchette de ventes.</p>
+    <div class="plan">
+      <div class="ctl">
+        <label>Dépense par jour <span id="o_daily"></span></label>
+        <input id="daily" type="range" min="2000" max="8000" step="1" aria-label="Dépense par jour du 16 au 31 janvier">
+        <small>Rythme actuel : ≈ 3 553 PLN/jour. Pour dépenser tout le budget : ≈ 6 044 PLN/jour.</small>
+        <div class="presets"><button data-v="3553">Rythme actuel</button><button data-v="6044">Tout le budget</button></div>
+      </div>
+      <div>
+        <div class="out">
+          <div><div class="l">Dépense totale de janvier</div><div class="v" id="p1"></div><div class="d" id="p1d"></div></div>
+          <div><div class="l">Reste à dépenser</div><div class="v" id="p2"></div><div class="d" id="p2d"></div></div>
+          <div><div class="l">Ventes du 16 au 31 (vos chiffres)</div><div class="v" id="p3"></div><div class="d" id="p3d"></div></div>
+        </div>
+        <div class="note">La fourchette de ventes s'appuie sur vos deux dernières semaines (ROAS entre 35 et 38) et prévoit qu'il baisse un peu si on accélère, comme en semaine 2. C'est une estimation, pas une garantie.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row2">
+    <div class="card">
+      <h2>Notre plan d'action</h2>
+      <p class="h2s">Ce qu'on fait, et où on en est.</p>
+      <ul class="actions" id="actions"></ul>
+    </div>
+    <div class="card">
+      <h2>Ce dont on a besoin de votre côté</h2>
+      <p class="h2s">Chaque point débloque une action du plan.</p>
+      <ul class="need">
+        <li>Vos règles de mesure pour nos ventes (délai après un clic, après une vue)</li>
+        <li>Vos commandes du 1er au 14 janvier, avec leur numéro</li>
+        <li>Le rebond par source de trafic, et vs janvier 2025</li>
+        <li>Les changements récents : site, paiement, bandeau cookies, in-app</li>
+        <li>Votre définition d'un nouveau client, et son coût cible</li>
+        <li>Un contact technique (site, tags)</li>
+      </ul>
+      <div class="nextcall"><span class="pill inf">Prochain point</span><div><b>Lundi, 30 min</b><div class="meta">Revue des chiffres et du plan, toutes les 2 semaines puis chaque mois</div></div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Semaine par semaine</h2>
+    <p class="h2s">Les chiffres clés, pour suivre l'évolution d'une semaine à l'autre.</p>
+    <div class="tbl"><table id="weeks"></table></div>
+  </section>
+
+  <footer>Maquette préparée par Thomas Germain pour un case study d'Account Management. Client fictif, chiffres fournis dans le case. Les projections sont des estimations, pas des engagements.</footer>
+</div>
+
+<script>
+const XR=0.22, BUDGET=150000, DAYS=31;
+const spend=[2820.38,2670.7,2206.25,2759.18,2803.2,3186.85,3989.76,4294.32,3071.15,3761.76,5522.74,4607.3,4217.87,3552.71,3833.02];
+const val=[10885.47,11681.52,6372.77,11103.11,8557.45,16144.41,13071.39,12531.52,9721.03,15743.3,18616.91,15932.55,17211.59,13977.24];
+const cval=[22236.3,22105.74,18453.28,22712.66,26766.76,28440.24,30228.48,33158.33,26574.29,28714.49,39713.81,41219.63,28915.15,27076.26];
+const clk=[9253,10780,8480,8655,8902,11595,11411,10849,8218,8353,10287,11685,7896,6274];
+const conv=[77,92,73,87,82,139,113,117,123,89,113,117,115,115];
+const cconv=[177,142,144,162,185,179,215,182,206,184,292,311,190,184];
+const comp=[16807,18249,16046,16549,16457,15961,19497,11917,11077,9596,15995,12426,11101,10913];
+const eur=spend.map(v=>v*XR);
+const roasR=val.map((v,i)=>v/eur[i]), roasC=cval.map((v,i)=>v/eur[i]);
+const sum=(a,s=0,e=a.length)=>a.slice(s,e).reduce((x,y)=>x+y,0);
+const spent=sum(spend), pace=spent/15, need=(BUDGET-spent)/16;
+const baseDaily=sum(spend,0,14)/14;
+const $=id=>document.getElementById(id);
+const fr=(v,d=0)=>v.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let CUR='PLN';
+// money in PLN -> formatted in the selected currency, with the other one in brackets
+const m=(pln,short)=>{const e=pln*XR;if(short){return CUR==='PLN'?fr(pln/1000,1)+' k PLN':fr(e/1000,1)+' k €'}
+  return CUR==='PLN'?fr(pln)+' PLN (≈ '+fr(e)+' €)':fr(e)+' € ('+fr(pln)+' PLN)'};
+const mv=pln=>CUR==='PLN'?pln:pln*XR;
+const unit=()=>CUR==='PLN'?'k PLN':'k €';
+
+const actions=[
+  ['Vérifier notre tag (cookies, doublons, montant)','Notre expert technique · semaine 1','En cours','warn'],
+  ['Comparer vos commandes et les nôtres','Dès réception de votre export','En attente de vous','inf'],
+  ['Une seule règle de mesure, écrite','À valider ensemble lundi','Prévu','inf'],
+  ['Vérifier les plafonds de budget quotidiens','Semaine 1','En cours','warn'],
+  ['Enchères par segment, audiences élargies','Semaines 1–2','Prévu','inf'],
+  ['Couper les sites qui dépensent sans vendre','Semaines 1–2','Prévu','inf'],
+  ['Test A/B de nouvelles pubs','Semaines 1–2','Prévu','inf'],
+  ['Relancer l\'in-app, régler la fréquence','Après votre retour sur l\'arrêt du 4 janvier','En attente de vous','inf'],
+  ['Test nouveaux clients (4 semaines)','Lancement semaine 2, après votre feu vert','Prévu','inf'],
+  ['Facture d\'octobre : réponse écrite','Sous 48 h, avec notre Finance','En cours','warn'],
+];
+
+function kpis(){
+  const pct=spent/BUDGET*100, timePct=15/DAYS*100;
+  $('k1').textContent=m(spent,true);
+  $('k1m').style.width=pct+'%';$('k1t').style.left=timePct+'%';
+  $('k1d').innerHTML=fr(pct,1)+' % dépensé, '+fr(timePct)+' % du mois passé <span class="pill ko">En retard</span>';
+  const eom=spent+pace*16;
+  $('k2').textContent=m(eom,true);
+  $('k2d').innerHTML='soit '+fr(eom/BUDGET*100)+' % du budget · il faudrait '+m(need,false).replace(/ \(.*\)/,'')+'/jour';
+  $('k3a').textContent=fr(sum(cval)/sum(eur,0,14),1);
+  $('k3d').innerHTML='Nos chiffres : '+fr(sum(val)/sum(eur,0,14),1)+' <span class="pill warn">Écart de mesure en cours d\'analyse</span>';
+
+  $('k4').textContent=fr(sum(cval)/1000,1)+' k €';
+  $('k4d').textContent='≈ '+fr(sum(cval)/XR/1000)+' k PLN · selon vous. Selon nous : '+fr(sum(val)/1000,1)+' k € · '+fr(sum(cconv))+' commandes';
+}
+
+const NS='http://www.w3.org/2000/svg';
+function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e}
+function lineChart(id,o){
+  const box=$(id); box.innerHTML='';
+  const W=560,H=240,L=58,R=12,T=10,B=26,pw=W-L-R,ph=H-T-B;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':o.label},box);
+  const tip=document.createElement('div');tip.className='tip';box.appendChild(tip);
+  const n=o.n, x=d=>L+pw*(d-1)/(n-1), y=v=>T+ph*(1-v/o.max);
+  const st=o.steps||4;for(let i=0;i<=st;i++){const v=o.max*i/st;el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:i?css('--grid'):css('--axis')},svg);const t=el('text',{x:L-8,y:y(v)+4,'text-anchor':'end'},svg);t.textContent=o.fmt(v)}
+  o.ticks.forEach(d=>{const t=el('text',{x:x(d),y:H-7,'text-anchor':'middle'},svg);t.textContent=d+' janv.'});
+  o.series.forEach(s=>{const pts=s.v.map((v,i)=>v==null?null:[x(i+1+(s.off||0)),y(v)]).filter(Boolean);
+    el('path',{d:pts.map((p,i)=>(i?'L':'M')+p[0]+','+p[1]).join(''),fill:'none',stroke:css(s.c),'stroke-width':s.dash?2:2.5,'stroke-dasharray':s.dash||'','stroke-linejoin':'round'},svg)});
+  if(o.end){const [d,v,txt]=o.end;el('circle',{cx:x(d),cy:y(v),r:4.5,fill:css('--red'),stroke:css('--surface'),'stroke-width':2},svg);const t=el('text',{x:x(d)-8,y:y(v)-9,'text-anchor':'end',style:'fill:'+css('--ink')+';font-weight:700;font-size:12px'},svg);t.textContent=txt}
+  const cross=el('line',{y1:T,y2:T+ph,stroke:css('--axis'),visibility:'hidden'},svg);
+  const hit=el('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent'},svg);
+  function mvv(e){const b=svg.getBoundingClientRect(),sx=(e.clientX-b.left)*W/b.width;let d=Math.round((sx-L)/pw*(n-1))+1;d=Math.max(1,Math.min(n,d));
+    cross.setAttribute('x1',x(d));cross.setAttribute('x2',x(d));cross.setAttribute('visibility','visible');
+    tip.innerHTML=o.tip(d);tip.style.display='block';const cb=box.getBoundingClientRect();let px=b.left-cb.left+x(d)*b.width/W+12;if(px+tip.offsetWidth>cb.width)px-=tip.offsetWidth+24;tip.style.left=px+'px';tip.style.top='8px'}
+  hit.addEventListener('pointermove',mvv);hit.addEventListener('pointerdown',mvv);
+  hit.addEventListener('pointerleave',()=>{tip.style.display='none';cross.setAttribute('visibility','hidden')});
+}
+function charts(){
+  const cum=[];let c=0;spend.forEach(v=>cum.push(c+=v));
+  const proj=[];let p=spent;for(let d=16;d<=31;d++){p+=pace;proj.push(p)}
+  const projSeries=Array(14).fill(null).concat([spent],proj);
+  const ideal=Array.from({length:31},(_,i)=>BUDGET/DAYS*(i+1));
+  const maxv=CUR==='PLN'?160000:36000;
+  lineChart('c1',{n:31,max:maxv,label:'Dépense cumulée de janvier',ticks:[1,8,15,22,31],fmt:v=>fr(v/1000)+' '+unit(),
+    series:[{v:ideal.map(mv),c:'--gray',dash:'6 5'},{v:projSeries.map(v=>v==null?null:mv(v)),c:'--red',dash:'5 4'},{v:cum.map(mv),c:'--red'}],
+    end:[31,mv(p),m(p,true)],
+    tip:d=>{const real=d<=15;const v=real?cum[d-1]:spent+pace*(d-15);return `<b>${d} janvier${real?'':' (projection)'}</b><div>Cumulé <em>${m(v,true)}</em></div><div>Pour tout dépenser <em>${m(ideal[d-1],true)}</em></div>`}});
+  lineChart('c2',{n:14,max:50,steps:5,label:'ROAS jour par jour',ticks:[1,4,7,10,14],fmt:v=>fr(v),
+    series:[{v:Array(14).fill(40),c:'--gray',dash:'6 5'},{v:roasC,c:'--char'},{v:roasR,c:'--red'}],
+    tip:d=>`<b>${d} janvier</b><div>Vos chiffres <em>${fr(roasC[d-1],1)}</em></div><div>Nos chiffres <em>${fr(roasR[d-1],1)}</em></div><div>Dépense <em>${m(spend[d-1],false)}</em></div>`});
+}
+function planner(){
+  const daily=+$('daily').value, total=spent+daily*16, rest=Math.max(0,BUDGET-total), over=Math.max(0,total-BUDGET);
+  const lo=Math.min(35.3,35.3*Math.pow(daily/baseDaily,-0.21)), hi=38.0;
+  const remE=daily*16*XR;
+  $('o_daily').textContent=CUR==='PLN'?fr(daily)+' PLN (≈ '+fr(daily*XR)+' €)':fr(daily*XR)+' € ('+fr(daily)+' PLN)';
+  $('p1').textContent=m(total,true);
+  $('p1d').innerHTML=fr(total/BUDGET*100)+' % du budget '+(total>=BUDGET*0.99?'<span class="pill ok">Budget livré</span>':'<span class="pill ko">Sous le budget</span>');
+  $('p2').textContent=over?'+'+m(over,true):m(rest,true);
+  $('p2d').textContent=over?'au-dessus du budget':(rest?'non dépensés fin janvier':'rien à perdre');
+
+  $('p3').textContent=fr(remE*lo/1000)+' à '+fr(remE*hi/1000)+' k €';
+  $('p3d').textContent='≈ '+fr(remE*lo/XR/1e6,1)+' à '+fr(remE*hi/XR/1e6,1)+' M PLN · ROAS entre '+fr(lo,1)+' et '+fr(hi,1);
+}
+function actionsList(){
+  $('actions').innerHTML=actions.map(([a,b,s,c])=>`<li><div>${a}<small>${b}</small></div><span class="pill ${c}">${s}</span></li>`).join('');
+}
+function weeks(){
+  const w=[[0,7],[7,14]].map(([s,e])=>{const sp=sum(spend,s,e),se=sp*XR;return{sp,cl:sum(clk,s,e),cp:sum(comp,s,e),cv:sum(conv,s,e),ccv:sum(cconv,s,e),r:sum(val,s,e)/se,rc:sum(cval,s,e)/se}});
+  const pct=(a,b)=>{const v=(b-a)/a*100;return (v>=0?'+':'')+fr(v)+' %'};
+  const rows=[['Dépense',x=>m(x.sp,false),'sp'],['Clics',x=>fr(x.cl),'cl'],['Commandes (vos chiffres)',x=>fr(x.ccv),'ccv'],['Commandes (nos chiffres)',x=>fr(x.cv),'cv'],['ROAS (vos chiffres)',x=>fr(x.rc,1),'rc'],['ROAS (nos chiffres)',x=>fr(x.r,1),'r'],['Clics de l\'autre retargeter',x=>fr(x.cp),'cp']];
+  $('weeks').innerHTML='<tr><th></th><th>Semaine 1 (1–7 janv.)</th><th>Semaine 2 (8–14 janv.)</th><th>Évolution</th></tr>'+rows.map(([l,f,k])=>`<tr><td>${l}</td><td>${f(w[0])}</td><td>${f(w[1])}</td><td>${pct(w[0][k],w[1][k])}</td></tr>`).join('');
+}
+function all(){kpis();charts();planner();weeks()}
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{CUR=b.dataset.c;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));all()}));
+document.querySelectorAll('.presets button').forEach(b=>b.addEventListener('click',()=>{$('daily').value=b.dataset.v;planner()}));
+$('daily').addEventListener('input',planner);
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',charts);
+$('daily').value=3553;actionsList();all();
+</script>
+</body>
+</html>
