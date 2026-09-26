@@ -4,262 +4,387 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Elektronik.de · Retargeting, janvier 2026</title>
+<title>Elektronik.de × RTB House · Espace client (maquette)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   color-scheme:light;
-  --bg:#ffffff;--panel:#f6f6f5;--ink:#141414;--ink2:#4a4a4a;--ink3:#737373;
-  --rule:#141414;--line:#e3e3e1;--grid:#eeeeec;
-  --red:#d9362a;--redtint:rgba(217,54,42,.13);--gray:#9b9b98;
-  --ok:#1c7a43;--wait:#8a5a00;--todo:#4a4a4a;
-  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;--mono:var(--sans);
+  --red:#EC4434;--redtx:#D2331F;--tint:#FDEDEB;
+  --char:#1F1B20;--deep:#16111A;--dline:#3A3040;--ondark:#CFCAD4;--dmuted:#9A93A0;
+  --page:#F4F3F6;--card:#FFFFFF;--div:#E4E2E7;--grid:#EEEDF0;
+  --ink:#1F1B20;--ink2:#58545C;--muted:#8E8A93;--ok:#1C7A43;
+  --ctl:#1F1B20;--ctlin:#16111A;
+  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --bg:#121212;--panel:#1b1b1b;--ink:#f2f2f0;--ink2:#c4c4c1;--ink3:#8f8f8c;
-    --rule:#f2f2f0;--line:#2e2e2e;--grid:#242424;
-    --red:#f0584b;--redtint:rgba(240,88,75,.20);--gray:#6f6f6c;
-    --ok:#4cc27c;--wait:#e3ad4a;--todo:#c4c4c1;
+    --redtx:#FF6A5A;--tint:rgba(236,68,52,.14);
+    --page:#110D13;--card:#1B161E;--div:#2E2632;--grid:#262029;
+    --ink:#F2EFF4;--ink2:#CFCAD4;--muted:#9A93A0;--ok:#4CC27C;
+    --ctl:#0C090E;--ctlin:#1B161E;
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#121212;--panel:#1b1b1b;--ink:#f2f2f0;--ink2:#c4c4c1;--ink3:#8f8f8c;
-  --rule:#f2f2f0;--line:#2e2e2e;--grid:#242424;
-  --red:#f0584b;--redtint:rgba(240,88,75,.20);--gray:#6f6f6c;
-  --ok:#4cc27c;--wait:#e3ad4a;--todo:#c4c4c1;
+  --redtx:#FF6A5A;--tint:rgba(236,68,52,.14);
+  --page:#110D13;--card:#1B161E;--div:#2E2632;--grid:#262029;
+  --ink:#F2EFF4;--ink2:#CFCAD4;--muted:#9A93A0;--ok:#4CC27C;
+  --ctl:#0C090E;--ctlin:#1B161E;
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg)}
+html,body{margin:0;background:var(--page)}
 body{color:var(--ink);font:16px/1.55 var(--sans);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
-.fig{font-variant-numeric:tabular-nums}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-/* masthead */
-.mast{padding:28px 0 0}
-.mast .row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding-bottom:18px;border-bottom:2px solid var(--rule)}
-.mast h1{font-size:30px;line-height:1.15;font-weight:700;margin:0;letter-spacing:-.01em}
-.mast p{margin:6px 0 0;color:var(--ink2);font-size:15px}
-.mast .right{display:flex;align-items:center;gap:16px;font-size:14px;color:var(--ink3)}
-.toggle{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.toggle button{font:inherit;font-size:14px;font-weight:500;border:0;background:transparent;color:var(--ink2);padding:6px 12px;cursor:pointer}
-.toggle button+button{border-left:1px solid var(--line)}
-.toggle button.on{background:var(--ink);color:var(--bg)}
-nav{display:flex;gap:28px;border-bottom:1px solid var(--line)}
-nav button{font:inherit;font-size:15px;font-weight:500;border:0;background:transparent;color:var(--ink3);padding:14px 0 12px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
-nav button.on{color:var(--ink);border-bottom-color:var(--red)}
-nav button:hover{color:var(--ink)}
-main{padding:32px 0 48px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+b,strong{font-weight:600}
+
+/* ---------- header (RTB dark band) ---------- */
+.top{background:var(--char);color:#fff;border-bottom:1px solid var(--dline)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--dline);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px;color:var(--ondark);font-size:14px}
+.brand img{height:19px;width:auto;display:block}
+.brand .sl{width:1px;height:18px;background:var(--dline)}
+.bar .right{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--dmuted)}
+.seg{display:inline-flex;border:1px solid var(--dline);border-radius:6px;overflow:hidden}
+.seg button{font:inherit;font-size:14px;font-weight:500;border:0;background:transparent;color:var(--ondark);padding:6px 13px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--dline)}
+.seg button.on{background:var(--red);color:#fff}
+.hero{padding:34px 0 26px}
+.kick{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--redtx);margin:0 0 10px}
+.top .kick,.dark .kick{color:var(--red)}
+.eq{display:inline-block;width:16px;height:3px;background:var(--red);box-shadow:0 6px 0 var(--red);transform:translateY(-3px);flex:none}
+.hero h1{font-size:40px;line-height:1.1;font-weight:700;margin:0;letter-spacing:-.015em}
+.hero p{margin:12px 0 0;color:var(--ondark);font-size:16px;max-width:68ch}
+nav{display:flex;gap:30px}
+nav button{font:inherit;font-size:15px;font-weight:500;border:0;background:transparent;color:var(--dmuted);padding:12px 0 13px;cursor:pointer;border-bottom:3px solid transparent}
+nav button .no{color:var(--red);margin-right:7px;font-weight:600}
+nav button.on{color:#fff;border-bottom-color:var(--red)}
+nav button:hover{color:#fff}
+
+/* ---------- layout ---------- */
+main.wrap{padding-top:32px;padding-bottom:36px}
+.phead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 24px;flex-wrap:wrap;margin-bottom:20px}
+.phead h2{margin:0}
 .view{display:none}.view.on{display:block}
-h2{font-size:19px;line-height:1.3;font-weight:600;margin:0 0 4px}
+.panel{background:var(--card);border-radius:12px;padding:26px 28px;border:1px solid var(--div)}
+.dark{background:var(--char);color:#fff;border-color:var(--char)}
+.stack-y>*+*{margin-top:20px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.two>*{min-width:0}
+@media (max-width:980px){.two{grid-template-columns:1fr}}
+h2{font-size:21px;line-height:1.25;font-weight:700;margin:0 0 6px;letter-spacing:-.005em}
 .lede{color:var(--ink2);font-size:15px;margin:0 0 16px;max-width:70ch}
-section+section{margin-top:44px}
-/* summary strip */
-.strip{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.strip>div{padding:18px 20px 20px}
-.strip>div+div{border-left:1px solid var(--line)}
-.strip>div:first-child{padding-left:0}
-.strip .k{font-size:14px;color:var(--ink2);font-weight:500}
-.strip .v{font-size:32px;font-weight:600;line-height:1.1;margin:8px 0 6px;letter-spacing:-.015em}
-.strip .v small{font-size:15px;font-weight:400;color:var(--ink3);letter-spacing:0}
-.strip .n{font-size:14px;color:var(--ink2);line-height:1.45}
-.strip .x{font-size:14px;color:var(--ink3);margin:-2px 0 4px}
-.late{color:var(--red);font-weight:500}
-.bar{position:relative;height:8px;background:var(--grid);margin:12px 0 8px}
-.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--red)}
-.bar b{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--ink)}
-@media (max-width:960px){.strip{grid-template-columns:1fr 1fr}.strip>div:nth-child(3){border-left:0;padding-left:0}.strip>div:nth-child(n+3){border-top:1px solid var(--line)}}
-@media (max-width:560px){.strip{grid-template-columns:1fr}.strip>div{border-left:0 !important;padding-left:0}.strip>div+div{border-top:1px solid var(--line)}}
-/* charts */
-.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-@media (max-width:960px){.two{grid-template-columns:1fr;gap:36px}}
-.key{display:flex;flex-wrap:wrap;gap:18px;font-size:14px;color:var(--ink2);margin:0 0 8px}
+.dark .lede{color:var(--ondark)}
+
+/* ---------- essentials (dark) ---------- */
+.ess{display:grid;grid-template-columns:1.7fr 1fr;gap:36px;align-items:start}
+.rings{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px}
+.ring{width:118px;height:118px;border-radius:50%;border:3px solid var(--red);display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:700;letter-spacing:-.01em;color:#fff}
+.rings p{margin:14px 0 0;font-size:14.5px;color:var(--ondark);line-height:1.5}
+.rings p b{color:#fff}
+.budget{border-left:1px solid var(--dline);padding-left:32px}
+.budget .lab{font-size:14px;color:var(--ondark)}
+.budget .big{font-size:32px;font-weight:700;margin:6px 0 0;letter-spacing:-.015em}
+.budget .big small{font-size:16px;font-weight:400;color:var(--ondark);letter-spacing:0}
+.budget .alt{font-size:14px;color:var(--dmuted);margin-top:2px}
+.pbar{position:relative;height:10px;background:var(--dline);border-radius:5px;margin:16px 0 6px}
+.pbar i{position:absolute;left:0;top:0;bottom:0;background:var(--red);border-radius:5px}
+.pbar b{position:absolute;top:-6px;bottom:-6px;width:2px;background:#fff}
+.pbar-l{display:flex;justify-content:space-between;font-size:12.5px;color:var(--dmuted)}
+.budget ul{list-style:none;margin:18px 0 0;padding:0;font-size:14.5px;color:var(--ondark)}
+.budget li{padding:10px 0;border-top:1px solid var(--dline)}
+.budget li b{color:#fff}
+@media (max-width:980px){.ess{grid-template-columns:1fr;gap:26px}.budget{border-left:0;padding-left:0;border-top:1px solid var(--dline);padding-top:22px}}
+@media (max-width:640px){.rings{grid-template-columns:1fr;gap:16px}.rings>div{display:grid;grid-template-columns:84px 1fr;gap:16px;align-items:center}.ring{width:84px;height:84px;font-size:20px}.rings p{margin:0}}
+
+/* ---------- charts ---------- */
+.key{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--ink2);margin:0 0 6px}
 .key span{display:inline-flex;align-items:center;gap:7px}
 .k-line{width:16px;height:2px;display:inline-block}
-.k-dash{width:16px;border-top:2px dashed currentColor;display:inline-block}
-.k-band{width:14px;height:10px;background:var(--redtint);display:inline-block}
+.k-dash{width:16px;border-top:2px dashed var(--muted);display:inline-block}
+.k-dashr{width:16px;border-top:2px dashed var(--red);display:inline-block}
+.k-band{width:14px;height:10px;background:var(--tint);border:1px solid rgba(236,68,52,.35);display:inline-block}
 svg{display:block;overflow:visible;max-width:100%}
-svg text{fill:var(--ink3);font-size:12px;font-family:var(--sans)}
-svg text.lab{fill:var(--ink);font-size:13px;font-weight:600;paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
+svg text{fill:var(--muted);font-size:12px;font-family:var(--sans)}
+svg text.lab{fill:var(--ink);font-size:13px;font-weight:600;paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
 .cbox{position:relative}
-.tip{position:absolute;pointer-events:none;display:none;background:var(--bg);border:1px solid var(--ink);padding:8px 10px;font-size:13px;min-width:200px;z-index:4}
-.tip b{display:block;margin-bottom:4px;font-weight:600}.tip div{display:flex;justify-content:space-between;gap:16px;color:var(--ink2)}.tip em{font-style:normal;color:var(--ink);font-weight:500}
-/* tables */
-table{width:100%;border-collapse:collapse;font-size:15px}
-th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
-th{font-weight:500;font-size:13.5px;color:var(--ink3);border-bottom:1px solid var(--ink)}
-th:first-child,td:first-child{text-align:left;padding-left:0}
-td.n,th.n{font-size:15px}
-th.n{font-size:13.5px}
-tr.em td{font-weight:600}
-.pos{color:var(--ok)}.neg{color:var(--red)}
+.tip{position:absolute;pointer-events:none;display:none;background:var(--char);color:#fff;border-radius:8px;padding:9px 12px;font-size:13px;min-width:210px;z-index:4}
+.tip b{display:block;margin-bottom:4px}.tip div{display:flex;justify-content:space-between;gap:16px;color:var(--ondark)}.tip em{font-style:normal;color:#fff;font-weight:500}
+
+/* ---------- tables ---------- */
 .scroll{overflow-x:auto}
-@media (max-width:560px){table{font-size:14px}td.n{font-size:14px}th,td{padding:9px 6px}th:first-child,td:first-child{white-space:normal;padding-left:0}th.n{font-size:12.5px;white-space:normal}td:last-child,th:last-child{padding-right:0}
-  .stack,.stack tbody{display:block}.stack tr{display:grid;grid-template-columns:1fr 1fr .75fr}
-  .stack th:first-child{display:none}.stack td:first-child{grid-column:1/-1;border-bottom:0;padding:12px 0 0;font-weight:500}
-  .stack td.n{font-size:13.5px;padding:4px 0 10px 6px}.stack th.n{padding:8px 0 8px 6px}}
-/* simulator */
-.period{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:24px}
-.period button{font:inherit;font-size:15px;font-weight:500;border:0;background:transparent;color:var(--ink2);padding:8px 16px;cursor:pointer}
-.period button+button{border-left:1px solid var(--line)}
-.period button.on{background:var(--ink);color:var(--bg)}
-.sim{display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:start}
-.sim>*,.two>*{min-width:0}
-@media (max-width:960px){.sim{grid-template-columns:1fr;gap:28px}}
-.inputs{background:var(--panel);padding:20px 22px}
-.inputs h3{font-size:15px;font-weight:600;margin:0 0 4px}
-.inputs .hint{font-size:14px;color:var(--ink2);margin:0 0 14px}
-.fld{padding:14px 0;border-top:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--div);white-space:nowrap}
+th{font-weight:500;font-size:13.5px;color:var(--muted);border-bottom:1.5px solid var(--ink)}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+tr.em td{font-weight:600}
+td.sc,th.sc{background:var(--tint)}
+th.sc{color:var(--redtx);font-weight:600}
+.pos{color:var(--ok)}.neg{color:var(--redtx)}
+@media (max-width:600px){
+  table{font-size:14px}th,td{padding:9px 6px}td:last-child,th:last-child{padding-right:0}
+  .stack,.stack tbody{display:block}.stack tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stack th:first-child{display:none}.stack th{white-space:normal;font-size:12.5px;padding:8px 6px}
+  .stack td:first-child{grid-column:1/-1;border-bottom:0;padding:12px 0 2px;font-weight:500;white-space:normal}
+  .stack td{font-size:13.5px;padding:6px 6px 10px;white-space:normal}
+  .panel{padding:20px 18px}.hero h1{font-size:30px}.hero{padding:26px 0 18px}nav{gap:20px}
+}
+
+/* ---------- simulator ---------- */
+.period{display:inline-flex;border:1px solid var(--div);background:var(--card);border-radius:8px;overflow:hidden}
+.period button{font:inherit;font-size:15px;font-weight:500;border:0;background:transparent;color:var(--ink2);padding:9px 18px;cursor:pointer}
+.period button+button{border-left:1px solid var(--div)}
+.period button.on{background:var(--red);color:#fff}
+.sim{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
+.sim>*{min-width:0}
+@media (max-width:980px){.sim{grid-template-columns:1fr}}
+.ctl{background:var(--ctl);color:#fff;border-radius:12px;padding:24px}
+.ctl h3{font-size:17px;font-weight:700;margin:0 0 4px}
+.ctl .hint{font-size:14px;color:var(--ondark);margin:0 0 6px}
+.fld{padding:16px 0;border-top:1px solid var(--dline)}
+.fld:first-of-type{margin-top:14px}
 .fld label{display:block;font-weight:500;font-size:15px}
-.fld .val{display:flex;align-items:baseline;gap:8px;margin-top:8px}
-.fld input[type=number]{font:500 18px var(--sans);font-variant-numeric:tabular-nums;width:130px;padding:6px 8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:4px}
-.fld .u{color:var(--ink3);font-size:14px}
-.fld .alt{color:var(--ink3);font-size:14px;margin-left:auto}
-.fld input[type=range]{width:100%;accent-color:var(--red);margin:12px 0 2px}
-.fld p{font-size:13.5px;color:var(--ink3);margin:6px 0 0;line-height:1.45}
-.links{display:flex;gap:14px;margin-top:8px;font-size:14px}
-.links button{font:inherit;font-size:14px;border:0;background:none;padding:0;color:var(--ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
-.links button:hover{color:var(--red)}
-.fld p.warn{color:var(--red);font-size:14px;margin-top:10px}.fld p.warn:empty{display:none}
-.method{margin-top:18px;font-size:14px;color:var(--ink2);max-width:75ch}
+.fld .val{display:flex;align-items:baseline;gap:8px;margin-top:10px}
+.fld input[type=number]{font:600 18px var(--sans);font-variant-numeric:tabular-nums;width:132px;padding:7px 10px;border:1px solid var(--dline);background:var(--ctlin);color:#fff;border-radius:6px}
+.fld input[type=number]:focus{outline:2px solid var(--red);outline-offset:1px}
+.fld .u{color:var(--ondark);font-size:14px}
+.fld .alt{color:var(--dmuted);font-size:14px;margin-left:auto}
+.fld input[type=range]{width:100%;accent-color:var(--red);margin:14px 0 2px}
+.fld p{font-size:13.5px;color:var(--dmuted);margin:6px 0 0;line-height:1.45}
+.fld p.warn{color:#FF8A7D;font-size:14px;margin-top:10px}.fld p.warn:empty{display:none}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.links button{font:inherit;font-size:13.5px;font-weight:500;border:1px solid var(--dline);background:transparent;border-radius:6px;padding:5px 10px;color:var(--ondark);cursor:pointer}
+.links button:hover{border-color:var(--red);color:#fff}
+.say{font-size:19px;line-height:1.5;margin:0 0 20px;max-width:62ch}
+.say b{color:var(--redtx)}
+.method{margin-top:18px;padding-top:16px;border-top:1px solid var(--div);font-size:14px;color:var(--ink2);max-width:80ch}
 .method p{margin:0 0 6px}
-/* plan */
-.status{display:inline-flex;align-items:center;gap:8px;font-size:14px}
-.status i{width:8px;height:8px;display:inline-block}
-.s-go i{background:var(--wait)}.s-go{color:var(--wait)}
-.s-you i{background:var(--red)}.s-you{color:var(--red)}
-.s-plan i{background:var(--gray)}.s-plan{color:var(--todo)}
-td.w{white-space:normal;min-width:260px}
-.needs{margin:0;padding-left:22px}
-.needs li{padding:5px 0;color:var(--ink)}
-.next{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:15px;color:var(--ink2)}
-.next b{color:var(--ink)}
-footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--ink3);font-size:13.5px}
+
+/* ---------- plan ---------- */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.phases>*{min-width:0}
+@media (max-width:980px){.phases{grid-template-columns:1fr}}
+.ph-h{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.dot{width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;flex:none;font-size:18px}
+.dot svg{width:18px;height:18px}
+.ph-h .when{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--redtx)}
+.ph-h h3{font-size:18px;font-weight:700;margin:1px 0 0}
+.acts{list-style:none;margin:0;padding:0}
+.acts li{padding:11px 0;border-top:1px solid var(--div)}
+.acts .t{font-size:15px;line-height:1.45}
+.acts .m{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13.5px;color:var(--muted);margin-top:3px}
+.st{display:inline-flex;align-items:center;gap:6px;font-weight:500}
+.st i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.st.go{color:var(--redtx)}.st.go i{background:var(--red)}
+.st.you{color:var(--ink)}.st.you i{border:2px solid var(--ink)}
+.st.plan{color:var(--muted)}.st.plan i{background:var(--muted)}
+.ok{margin-top:6px;padding-top:12px;border-top:1px solid var(--div);font-size:14.5px;color:var(--ink2)}
+.ok b{color:var(--redtx)}
+.side{display:flex;align-items:center;gap:16px}
+.side .dot{width:40px;height:40px}
+.side p{margin:0;font-size:15px}
+.side .grow{flex:1}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px}
+.side .st{font-size:14px}
+.needs{list-style:none;margin:6px 0 0;padding:0;counter-reset:n}
+.needs li{counter-increment:n;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;padding:8px 0;font-size:15px}
+.needs li::before{content:counter(n);width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:-1px}
+.rhythm{list-style:none;margin:10px 0 0;padding:0}
+.rhythm li{display:grid;grid-template-columns:26px 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--dline);font-size:15px;color:var(--ondark)}
+.rhythm li:first-child{border-top:0}
+.rhythm svg{width:18px;height:18px;color:var(--red);margin-top:3px}
+.rhythm b{color:#fff}
+.next{margin-top:14px;background:var(--red);color:#fff;border-radius:10px;padding:14px 18px;font-size:15px}
+.next b{font-weight:700}
+
+footer.wrap{padding-top:0;padding-bottom:40px;color:var(--muted);font-size:13.5px}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="mast">
-    <div class="row">
-      <div>
-        <h1>Elektronik.de, retargeting</h1>
-        <p>Janvier 2026. Données arrêtées au 15 janvier, mises à jour chaque lundi. 1 PLN = 0,22 €.</p>
+<header class="top">
+  <div class="wrap">
+    <div class="bar">
+      <div class="brand"><img src="data:image/png;base64,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" alt="RTB House" width="159" height="19"><span class="sl"></span><span>Espace client</span></div>
+      <div class="right"><span>Maquette de candidature, non officielle</span>
+        <div class="seg" id="cur" role="group" aria-label="Devise"><button data-c="PLN" class="on">PLN</button><button data-c="EUR">EUR</button></div>
       </div>
-      <div class="right">
-        <span>Maquette</span>
-        <div class="toggle" role="group" aria-label="Devise"><button data-c="PLN" class="on">PLN</button><button data-c="EUR">EUR</button></div>
-      </div>
+    </div>
+    <div class="hero">
+      <div class="kick"><i class="eq"></i>Bilan de compte · janvier 2026</div>
+      <h1>Elektronik.de × RTB House</h1>
+      <p>Votre retargeting en un coup d'œil : où on en est, ce que ça peut donner, et ce qu'on fait. Données au 15&nbsp;janvier, mises à jour chaque lundi. 1&nbsp;PLN&nbsp;=&nbsp;0,22&nbsp;€.</p>
     </div>
     <nav role="tablist">
-      <button data-v="suivi" class="on" role="tab">Suivi</button>
-      <button data-v="sim" role="tab">Simulateur</button>
-      <button data-v="plan" role="tab">Plan d'action</button>
+      <button data-v="suivi" class="on" role="tab"><span class="no">1</span>Suivi</button>
+      <button data-v="sim" role="tab"><span class="no">2</span>Simulateur</button>
+      <button data-v="plan" role="tab"><span class="no">3</span>Plan d'action</button>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <!-- SUIVI -->
-    <div class="view on" id="v-suivi">
-      <section>
-        <div class="strip">
-          <div>
-            <div class="k">Budget dépensé</div>
-            <div class="v fig" id="s1"></div><div class="x" id="s1x"></div>
-            <div class="bar" aria-hidden="true"><i id="s1bar"></i><b id="s1mark"></b></div>
-            <div class="n" id="s1n"></div>
-          </div>
-          <div><div class="k">Fin de mois au rythme actuel</div><div class="v fig" id="s2"></div><div class="x" id="s2x"></div><div class="n" id="s2n"></div></div>
-          <div><div class="k">ROAS, objectif 40</div><div class="v fig" id="s3"></div><div class="n" id="s3n"></div></div>
-          <div><div class="k">Ventes attribuées, 1er au 14</div><div class="v fig" id="s4"></div><div class="x" id="s4x"></div><div class="n" id="s4n"></div></div>
-        </div>
-      </section>
-
-      <section class="two">
+<main class="wrap">
+  <!-- ================= SUIVI ================= -->
+  <div class="view on stack-y" id="v-suivi">
+    <section class="panel dark">
+      <div class="ess">
         <div>
-          <h2>La dépense prend du retard</h2>
-          <p class="lede">Cumul réel au 15 janvier, puis la suite si le rythme ne change pas.</p>
-          <div class="key"><span><i class="k-line" style="background:var(--red)"></i>Réel</span><span style="color:var(--red)"><i class="k-dash"></i><span style="color:var(--ink2)">Si rien ne change</span></span><span style="color:var(--gray)"><i class="k-dash"></i><span style="color:var(--ink2)">Pour tout dépenser</span></span></div>
-          <div class="cbox" id="c1"></div>
-        </div>
-        <div>
-          <h2>Deux mesures du même ROAS</h2>
-          <p class="lede">Mêmes clics, mais votre outil compte deux fois plus de ventes que le nôtre. On vérifie notre suivi.</p>
-          <div class="key"><span><i class="k-line" style="background:var(--ink)"></i>Vos chiffres</span><span><i class="k-line" style="background:var(--red)"></i>Nos chiffres</span><span style="color:var(--gray)"><i class="k-dash"></i><span style="color:var(--ink2)">Objectif 40</span></span></div>
-          <div class="cbox" id="c2"></div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Semaine 1 et semaine 2</h2>
-        <div class="scroll"><table id="weeks" class="stack"></table></div>
-      </section>
-    </div>
-
-    <!-- SIMULATEUR -->
-    <div class="view" id="v-sim">
-      <div class="period" role="group" aria-label="Période"><button data-m="jan" class="on">Fin de janvier</button><button data-m="feb">Février</button></div>
-      <div class="sim">
-        <div class="inputs">
-          <div id="in-jan">
-            <h3>Du 16 au 31 janvier</h3>
-            <p class="hint">Combien dépenser par jour pour finir le mois.</p>
-            <div class="fld">
-              <label for="n_daily">Dépense par jour</label>
-              <div class="val"><input id="n_daily" type="number" min="1000" max="10000" step="50"><span class="u">PLN</span><span class="alt" id="a_daily"></span></div>
-              <input id="r_daily" type="range" min="2000" max="8000" step="1" aria-label="Dépense par jour">
-              <div class="links"><button data-d="3553">Rythme actuel</button><button data-d="6044">Dépenser tout le budget</button></div>
-              <p class="warn" id="warn"></p>
-            </div>
-          </div>
-          <div id="in-feb" style="display:none">
-            <h3>Février, 28 jours</h3>
-            <p class="hint">Préparer le mois prochain.</p>
-            <div class="fld">
-              <label for="n_bud">Budget du mois</label>
-              <div class="val"><input id="n_bud" type="number" min="30000" max="400000" step="5000"><span class="u">PLN</span><span class="alt" id="a_bud"></span></div>
-              <input id="r_bud" type="range" min="50000" max="300000" step="5000" aria-label="Budget du mois">
-            </div>
-            <div class="fld">
-              <label for="n_new">Part pour les nouveaux clients</label>
-              <div class="val"><input id="n_new" type="number" min="0" max="40" step="1"><span class="u">%</span><span class="alt" id="a_new"></span></div>
-              <input id="r_new" type="range" min="0" max="30" step="1" aria-label="Part pour les nouveaux clients">
-              <p>Le reste finance le retargeting.</p>
-            </div>
-            <div class="fld">
-              <label for="n_cpa">Coût cible d'un nouveau client</label>
-              <div class="val"><input id="n_cpa" type="number" min="5" max="300" step="1"><span class="u">€</span></div>
-              <input id="r_cpa" type="range" min="10" max="120" step="1" aria-label="Coût cible d'un nouveau client">
-              <p>Ce que vous acceptez de payer en publicité pour un premier achat.</p>
-            </div>
+          <div class="kick"><i class="eq"></i>L'essentiel</div>
+          <h2>Trois chiffres pour comprendre janvier</h2>
+          <div class="rings">
+            <div><div class="ring" id="r1"></div><p id="r1t"></p></div>
+            <div><div class="ring" id="r2"></div><p id="r2t"></p></div>
+            <div><div class="ring" id="r3"></div><p id="r3t"></p></div>
           </div>
         </div>
-        <div>
-          <div class="scroll"><table id="cmp" class="stack"></table></div>
-          <section style="margin-top:32px">
-            <h2 id="ch_t"></h2>
-            <p class="lede" id="ch_s"></p>
-            <div class="key"><span><i class="k-band"></i>Fourchette</span><span><i class="k-line" style="background:var(--red)"></i>Estimation</span><span style="color:var(--gray)"><i class="k-dash"></i><span style="color:var(--ink2)" id="ch_ref"></span></span></div>
-            <div class="cbox" id="c3"></div>
-          </section>
-          <div class="method">
-            <p><b>Comment c'est calculé.</b> Point de départ : vos chiffres du 1er au 14 janvier, avec un ROAS de 36,4 en moyenne (35,3 et 38,0 selon la semaine). Quand la dépense par jour augmente, le ROAS baisse un peu : en semaine 2, 42 % de dépense en plus ont coûté 7 % de ROAS, et on applique la même tendance. Nouveaux clients : budget dédié divisé par le coût cible, à 20 % près, avec votre panier moyen actuel de 144 € pour le premier achat.</p>
-            <p>Ce sont des ordres de grandeur pour décider ensemble, pas des engagements.</p>
-          </div>
+        <div class="budget">
+          <div class="lab">Budget de janvier dépensé</div>
+          <div class="big" id="b1"></div>
+          <div class="alt" id="b1x"></div>
+          <div class="pbar" aria-hidden="true"><i id="bbar"></i><b id="bmark"></b></div>
+          <div class="pbar-l"><span>1er janvier</span><span id="bmarkl"></span><span>31</span></div>
+          <ul><li id="b2"></li><li id="b3"></li></ul>
         </div>
       </div>
+    </section>
+
+    <div class="two">
+      <section class="panel">
+        <div class="kick"><i class="eq"></i>Le budget</div>
+        <h2>La dépense prend du retard</h2>
+        <p class="lede">Cumul réel au 15 janvier, puis la suite si le rythme ne change pas.</p>
+        <div class="key"><span><i class="k-line" style="background:var(--red)"></i>Réel</span><span><i class="k-dashr"></i>Si rien ne change</span><span><i class="k-dash"></i>Pour tout dépenser</span></div>
+        <div class="cbox" id="c1"></div>
+      </section>
+      <section class="panel">
+        <div class="kick"><i class="eq"></i>La mesure</div>
+        <h2>Deux mesures du même ROAS</h2>
+        <p class="lede">Mêmes clics, mais votre outil compte presque deux fois plus de ventes que le nôtre. On vérifie notre suivi.</p>
+        <div class="key"><span><i class="k-line" style="background:var(--ink)"></i>Vos chiffres</span><span><i class="k-line" style="background:var(--red)"></i>Nos chiffres</span><span><i class="k-dash"></i>Objectif 40</span></div>
+        <div class="cbox" id="c2"></div>
+      </section>
     </div>
 
-    <!-- PLAN -->
-    <div class="view" id="v-plan">
-      <section>
-        <h2>Ce qu'on fait</h2>
-        <div class="scroll"><table id="acts"></table></div>
+    <section class="panel">
+      <div class="kick"><i class="eq"></i>Semaine par semaine</div>
+      <h2>Semaine 2 : 42 % de dépense en plus, le ROAS ne baisse que de 7 %</h2>
+      <p class="lede">La campagne peut dépenser plus sans perdre beaucoup en rentabilité. L'autre retargeter, lui, a perdu 31 % de clics.</p>
+      <div class="scroll"><table id="weeks" class="stack"></table></div>
+    </section>
+  </div>
+
+  <!-- ================= SIMULATEUR ================= -->
+  <div class="view" id="v-sim">
+    <div class="phead">
+      <div><div class="kick"><i class="eq"></i>Simulateur</div><h2>Anticipez votre dépense et vos ventes</h2></div>
+      <div class="period" role="group" aria-label="Période"><button data-m="jan" class="on">Fin de janvier</button><button data-m="feb">Février</button></div>
+    </div>
+    <div class="sim">
+      <aside class="ctl">
+        <div id="in-jan">
+          <div class="kick"><i class="eq"></i>Vos réglages</div>
+          <h3>Du 16 au 31 janvier</h3>
+          <p class="hint">Combien dépenser par jour pour finir le mois.</p>
+          <div class="fld">
+            <label for="n_daily">Dépense par jour</label>
+            <div class="val"><input id="n_daily" type="number" min="1000" max="10000" step="50"><span class="u">PLN</span><span class="alt" id="a_daily"></span></div>
+            <input id="r_daily" type="range" min="2000" max="8000" step="1" aria-label="Dépense par jour">
+            <div class="links"><button data-d="3553">Rythme actuel</button><button data-d="6044">Tout le budget</button></div>
+            <p class="warn" id="warn"></p>
+          </div>
+        </div>
+        <div id="in-feb" style="display:none">
+          <div class="kick"><i class="eq"></i>Vos réglages</div>
+          <h3>Février, 28 jours</h3>
+          <p class="hint">Préparer le mois prochain.</p>
+          <div class="fld">
+            <label for="n_bud">Budget du mois</label>
+            <div class="val"><input id="n_bud" type="number" min="30000" max="400000" step="5000"><span class="u">PLN</span><span class="alt" id="a_bud"></span></div>
+            <input id="r_bud" type="range" min="50000" max="300000" step="5000" aria-label="Budget du mois">
+          </div>
+          <div class="fld">
+            <label for="n_new">Part pour les nouveaux clients</label>
+            <div class="val"><input id="n_new" type="number" min="0" max="40" step="1"><span class="u">%</span><span class="alt" id="a_new"></span></div>
+            <input id="r_new" type="range" min="0" max="30" step="1" aria-label="Part pour les nouveaux clients">
+            <p>Le reste finance le retargeting.</p>
+          </div>
+          <div class="fld">
+            <label for="n_cpa">Coût cible d'un nouveau client</label>
+            <div class="val"><input id="n_cpa" type="number" min="5" max="300" step="1"><span class="u">€</span></div>
+            <input id="r_cpa" type="range" min="10" max="120" step="1" aria-label="Coût cible d'un nouveau client">
+            <p>Ce que vous acceptez de payer en publicité pour un premier achat.</p>
+          </div>
+        </div>
+      </aside>
+      <section class="panel">
+        <div class="kick"><i class="eq"></i>Résultat</div>
+        <p class="say" id="say"></p>
+        <div class="scroll"><table id="cmp" class="stack"></table></div>
+        <div style="margin-top:30px">
+          <h2 id="ch_t"></h2>
+          <p class="lede" id="ch_s"></p>
+          <div class="key"><span><i class="k-band"></i>Fourchette</span><span><i class="k-line" style="background:var(--red)"></i>Estimation</span><span><i class="k-dash"></i><span id="ch_ref"></span></span></div>
+          <div class="cbox" id="c3"></div>
+        </div>
+        <div class="method">
+          <p><b>Comment c'est calculé.</b> Point de départ : vos chiffres du 1er au 14 janvier, avec un ROAS de 36,4 en moyenne (35,3 et 38,0 selon la semaine). Quand la dépense par jour augmente, le ROAS baisse un peu : en semaine 2, 42 % de dépense en plus ont coûté 7 % de ROAS, et on applique la même tendance. Nouveaux clients : budget dédié divisé par le coût cible, à 20 % près, avec votre panier moyen actuel de 144 € pour le premier achat.</p>
+          <p>Ce sont des ordres de grandeur pour décider ensemble, pas des engagements.</p>
+        </div>
       </section>
-      <section>
-        <h2>Ce qu'il nous faut de votre côté</h2>
+    </div>
+  </div>
+
+  <!-- ================= PLAN ================= -->
+  <div class="view stack-y" id="v-plan">
+    <div class="phead">
+      <div><div class="kick"><i class="eq"></i>Notre plan</div><h2>Compter juste, dépenser le budget, puis grandir</h2></div>
+      <div class="legend"><span class="st go"><i></i>En cours</span><span class="st you"><i></i>Dépend de vous</span><span class="st plan"><i></i>Prévu</span></div>
+    </div>
+    <div class="phases">
+      <section class="panel">
+        <div class="ph-h"><div class="dot"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg></div><div><div class="when">SEMAINE 1</div><h3>Compter juste</h3></div></div>
+        <ul class="acts">
+          <li><div class="t">Vérifier notre tag : bandeau cookies, doublons, montant envoyé</div><div class="m"><span>Notre équipe technique</span><span class="st go"><i></i>En cours</span></div></li>
+          <li><div class="t">Comparer vos commandes et les nôtres, une par une</div><div class="m"><span>Vous et nous, dès votre export</span><span class="st you"><i></i>Dépend de vous</span></div></li>
+          <li><div class="t">Écrire une règle de mesure commune</div><div class="m"><span>Vous et nous, lundi</span><span class="st plan"><i></i>Prévu</span></div></li>
+        </ul>
+        <div class="ok"><b>Réussi si :</b> un seul ROAS, le même pour vous et nous.</div>
+      </section>
+      <section class="panel">
+        <div class="ph-h"><div class="dot"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M496 384H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v336c0 17.67 14.33 32 32 32h464c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM464 96H345.94c-21.38 0-32.09 25.85-16.97 40.97l32.4 32.4L288 242.75l-73.37-73.37c-12.5-12.5-32.76-12.5-45.25 0l-68.69 68.69c-6.25 6.25-6.25 16.38 0 22.63l22.62 22.62c6.25 6.25 16.38 6.25 22.63 0L192 237.25l73.37 73.37c12.5 12.5 32.76 12.5 45.25 0l96-96 32.4 32.4c15.12 15.12 40.97 4.41 40.97-16.97V112c.01-8.84-7.15-16-15.99-16z"></path></svg></div><div><div class="when">SEMAINES 1–2</div><h3>Dépenser le budget</h3></div></div>
+        <ul class="acts">
+          <li><div class="t">Contrôler les plafonds de budget quotidiens</div><div class="m"><span>Nous</span><span class="st go"><i></i>En cours</span></div></li>
+          <li><div class="t">Enchérir par segment : paniers abandonnés, visiteurs récents, anciens clients</div><div class="m"><span>Nous</span><span class="st plan"><i></i>Prévu</span></div></li>
+          <li><div class="t">Mettre en avant vos produits les plus rentables</div><div class="m"><span>Nous, avec votre flux produits</span><span class="st plan"><i></i>Prévu</span></div></li>
+          <li><div class="t">Retirer les sites qui dépensent sans vendre</div><div class="m"><span>Nous</span><span class="st plan"><i></i>Prévu</span></div></li>
+          <li><div class="t">Tester de nouvelles publicités (A/B)</div><div class="m"><span>Nous</span><span class="st plan"><i></i>Prévu</span></div></li>
+          <li><div class="t">Relancer l'in-app et régler la fréquence</div><div class="m"><span>Nous, après votre retour</span><span class="st you"><i></i>Dépend de vous</span></div></li>
+        </ul>
+        <div class="ok"><b>Réussi si :</b> 6&nbsp;000&nbsp;PLN par jour ou plus (≈&nbsp;1&nbsp;320&nbsp;€), ROAS au plus près de 40.</div>
+      </section>
+      <section class="panel">
+        <div class="ph-h"><div class="dot"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M624 208h-64v-64c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v64h-64c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h64v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-64h64c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm-400 48c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg></div><div><div class="when">SEMAINES 2–4</div><h3>Nouveaux clients</h3></div></div>
+        <ul class="acts">
+          <li><div class="t">Test nouveaux clients sur 4 semaines, avec 10 à 15 % du budget</div><div class="m"><span>Nous, après votre accord</span><span class="st you"><i></i>Dépend de vous</span></div></li>
+          <li><div class="t">Un point chaque semaine avec vous</div><div class="m"><span>Votre Account Manager</span><span class="st plan"><i></i>Prévu</span></div></li>
+          <li><div class="t">Mesurer notre vrai apport : un groupe ne voit pas les pubs</div><div class="m"><span>Nous</span><span class="st plan"><i></i>Prévu</span></div></li>
+          <li><div class="t">Après 4 semaines : on accélère, on ajuste ou on arrête</div><div class="m"><span>Vous et nous</span><span class="st plan"><i></i>Prévu</span></div></li>
+        </ul>
+        <div class="ok"><b>Réussi si :</b> un coût par nouveau client dans l'objectif fixé ensemble.</div>
+      </section>
+    </div>
+
+    <section class="panel side">
+      <div class="dot"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zM64 72c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8V72zm0 80v-16c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8zm144 263.88V440c0 4.42-3.58 8-8 8h-16c-4.42 0-8-3.58-8-8v-24.29c-11.29-.58-22.27-4.52-31.37-11.35-3.9-2.93-4.1-8.77-.57-12.14l11.75-11.21c2.77-2.64 6.89-2.76 10.13-.73 3.87 2.42 8.26 3.72 12.82 3.72h28.11c6.5 0 11.8-5.92 11.8-13.19 0-5.95-3.61-11.19-8.77-12.73l-45-13.5c-18.59-5.58-31.58-23.42-31.58-43.39 0-24.52 19.05-44.44 42.67-45.07V232c0-4.42 3.58-8 8-8h16c4.42 0 8 3.58 8 8v24.29c11.29.58 22.27 4.51 31.37 11.35 3.9 2.93 4.1 8.77.57 12.14l-11.75 11.21c-2.77 2.64-6.89 2.76-10.13.73-3.87-2.43-8.26-3.72-12.82-3.72h-28.11c-6.5 0-11.8 5.92-11.8 13.19 0 5.95 3.61 11.19 8.77 12.73l45 13.5c18.59 5.58 31.58 23.42 31.58 43.39 0 24.53-19.05 44.44-42.67 45.07z"></path></svg></div>
+      <p class="grow"><b>En parallèle, votre facture d'octobre.</b> Réponse écrite sous 48 heures, avec notre équipe Finance.</p>
+      <span class="st go"><i></i>En cours</span>
+    </section>
+
+    <div class="two">
+      <section class="panel">
+        <div class="kick"><i class="eq"></i>De votre côté</div>
+        <h2>Ce qu'il nous faut pour avancer</h2>
         <ol class="needs">
           <li>Vos règles de mesure pour nos ventes : délai après un clic, après une vue.</li>
           <li>Vos commandes du 1er au 14 janvier, avec leur numéro.</li>
@@ -269,13 +394,23 @@ footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--ink3);fo
           <li>Votre priorité si les deux ne tiennent pas ensemble : tout le budget ou un ROAS de 40.</li>
           <li>Un contact technique pour le site et les tags.</li>
         </ol>
-        <p class="next"><b>Prochain point : lundi, 30 minutes.</b> Ensuite toutes les deux semaines, puis une fois par mois.</p>
+      </section>
+      <section class="panel dark">
+        <div class="kick"><i class="eq"></i>Le suivi</div>
+        <h2>Comment on travaille ensemble</h2>
+        <ul class="rhythm">
+          <li><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg><span><b>Chaque semaine :</b> un email avec vos chiffres.</span></li>
+          <li><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"></path></svg><span><b>Toutes les 2 semaines :</b> un appel, puis tous les mois.</span></li>
+          <li><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M436 160H12c-6.627 0-12-5.373-12-12v-36c0-26.51 21.49-48 48-48h48V12c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v52h128V12c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v52h48c26.51 0 48 21.49 48 48v36c0 6.627-5.373 12-12 12zM12 192h424c6.627 0 12 5.373 12 12v260c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V204c0-6.627 5.373-12 12-12zm333.296 95.947l-28.169-28.398c-4.667-4.705-12.265-4.736-16.97-.068L194.12 364.665l-45.98-46.352c-4.667-4.705-12.266-4.736-16.971-.068l-28.397 28.17c-4.705 4.667-4.736 12.265-.068 16.97l82.601 83.269c4.667 4.705 12.265 4.736 16.97.068l142.953-141.805c4.705-4.667 4.736-12.265.068-16.97z"></path></svg><span><b>Chaque trimestre :</b> un bilan complet.</span></li>
+          <li><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg><span><b>Sur place :</b> une visite chez vous à Dortmund.</span></li>
+        </ul>
+        <div class="next"><b>Prochain point : lundi, 30 minutes.</b></div>
       </section>
     </div>
-  </main>
+  </div>
+</main>
 
-  <footer>Maquette réalisée par Thomas Germain pour un case study d'Account Management. Client fictif, chiffres du case. Les projections sont des estimations, pas des engagements.</footer>
-</div>
+<footer class="wrap">Maquette réalisée par Thomas Germain pour un case study d'Account Management chez RTB House. Document non officiel. Client fictif, chiffres du case. Les projections sont des estimations, pas des engagements.</footer>
 
 <script>
 const XR=0.22, BJAN=150000, NB=' ';
@@ -333,15 +468,15 @@ function chart(id,o){
   for(let i=0;i<=st;i++){const v=y0+(o.y1-y0)*i/st;el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:i?css('--grid'):css('--ink'),'stroke-width':1},svg);const t=el('text',{x:L-8,y:y(v)+4,'text-anchor':'end'},svg);t.textContent=ylab[i]}
   let xt=o.xt;if(pw/xt.length<64)xt=xt.filter((_,i)=>i%2===0);
   xt.forEach((v,i)=>{const s=o.fx(v,i===xt.length-1),end=x(v)+s.length*3.4>W;const t=el('text',{x:x(v),y:H-8,'text-anchor':end?'end':'middle'},svg);t.textContent=s});
-  (o.bands||[]).forEach(b=>{const up=b.hi.map((v,i)=>x(b.xs[i])+','+y(v)),dn=b.lo.map((v,i)=>x(b.xs[i])+','+y(v)).reverse();el('path',{d:'M'+up.join('L')+'L'+dn.join('L')+'Z',fill:css('--redtint')},svg)});
-  if(o.vline)el('line',{x1:x(o.vline),x2:x(o.vline),y1:T,y2:T+ph,stroke:css('--gray'),'stroke-width':1.5,'stroke-dasharray':'4 4'},svg);
+  (o.bands||[]).forEach(b=>{const up=b.hi.map((v,i)=>x(b.xs[i])+','+y(v)),dn=b.lo.map((v,i)=>x(b.xs[i])+','+y(v)).reverse();el('path',{d:'M'+up.join('L')+'L'+dn.join('L')+'Z',fill:css('--tint')},svg)});
+  if(o.vline)el('line',{x1:x(o.vline),x2:x(o.vline),y1:T,y2:T+ph,stroke:css('--muted'),'stroke-width':1.5,'stroke-dasharray':'4 4'},svg);
   o.series.forEach(s=>{const pts=s.ys.map((v,i)=>v==null?null:x(s.xs[i])+','+y(v)).filter(Boolean);el('path',{d:'M'+pts.join('L'),fill:'none',stroke:css(s.c),'stroke-width':s.w||2,'stroke-dasharray':s.dash||'','stroke-linejoin':'round'},svg)});
   (o.marks||[]).forEach(m=>{if(m.x<o.x0||m.x>o.x1)return;const cx=x(m.x),cy=y(m.y);el('circle',{cx,cy,r:4,fill:css('--red')},svg);if(!m.t)return;
     let a='end',tx=cx-9,ty=cy-10;
     if(m.pos==='right'){a='start';tx=cx+9;ty=cy+4}
     else if(cx-L<m.t.length*7.4+12){a='start';tx=cx+9;ty=cy+20}
     const t=el('text',{x:tx,y:ty,'text-anchor':a,class:'lab'},svg);t.textContent=m.t});
-  const cross=el('line',{y1:T,y2:T+ph,stroke:css('--ink3'),'stroke-width':1,visibility:'hidden'},svg);
+  const cross=el('line',{y1:T,y2:T+ph,stroke:css('--muted'),'stroke-width':1,visibility:'hidden'},svg);
   const hit=el('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent'},svg);
   function mv(e){const b=svg.getBoundingClientRect(),sx=(e.clientX-b.left)*W/b.width;const v=o.snap(o.x0+(sx-L)/pw*(o.x1-o.x0));
     cross.setAttribute('x1',x(v));cross.setAttribute('x2',x(v));cross.setAttribute('visibility','visible');
@@ -351,50 +486,57 @@ function chart(id,o){
 }
 
 /* suivi */
+
+/* suivi */
 function suivi(){
-  const pct=spent/BJAN*100,tp=15/31*100,eom=spent+pace*16;
-  $('s1').innerHTML=K(spent)+' <small>sur '+K(BJAN)+'</small>';
-  $('s1x').textContent=alt(spent)+' sur '+auto(ocv(BJAN),OSYM(),1);
-  $('s1bar').style.width=pct+'%';$('s1mark').style.left=tp+'%';
-  $('s1n').innerHTML='<span class="late">'+fr(pct,1)+' % du budget</span> alors que '+fr(tp)+' % du mois est passé.';
-  $('s2').textContent=K(eom);$('s2x').textContent=alt(eom);
-  $('s2n').textContent='Il faudrait '+F(need)+' par jour ('+altF(need)+') pour tout dépenser.';
-  $('s3').innerHTML=fr(R_MID,1)+' <small>vos chiffres</small>';
-  $('s3n').innerHTML='<span class="late">'+fr(sum(val)/sum(eur,0,14),1)+'</span> selon nos chiffres, pour les mêmes publicités.';
-  $('s4').textContent=Kr(P(sum(cval)));$('s4x').textContent=alt(P(sum(cval)),0);
-  $('s4n').textContent=fr(sum(cconv))+' commandes selon vous, '+fr(sum(conv))+' selon nous ('+Kr(P(sum(val)))+').';
+  const pct=spent/BJAN*100,tp=15/31*100,eom=spent+pace*16,miss=(1-sum(conv)/sum(cconv))*100;
+  $('r1').textContent=fr(pct,1)+NB+'%';
+  $('r1t').innerHTML='<b>du budget dépensé</b> au 15 janvier, alors que '+fr(tp)+NB+'% du mois est passé.';
+  $('r2').textContent=fr(R_MID,1);
+  $('r2t').innerHTML='<b>de ROAS selon vos chiffres.</b> '+fr(sum(val)/sum(eur,0,14),1)+' selon les nôtres. Objectif : 40.';
+  $('r3').textContent='≈'+NB+fr(miss)+NB+'%';
+  $('r3t').innerHTML='<b>de vos ventes</b> que notre outil ne voit pas : '+fr(sum(conv))+' commandes contre '+fr(sum(cconv))+'. On vérifie notre tag.';
+  $('b1').innerHTML=K(spent)+' <small>sur '+K(BJAN)+'</small>';
+  $('b1x').textContent=alt(spent)+' sur '+auto(ocv(BJAN),OSYM(),1);
+  $('bbar').style.width=pct+'%';$('bmark').style.left=tp+'%';$('bmarkl').textContent='Aujourd’hui';
+  $('b2').innerHTML='<b>Au rythme actuel :</b> '+K(eom)+' fin janvier ('+alt(eom)+'). Il resterait '+K(BJAN-eom)+' non dépensés.';
+  $('b3').innerHTML='<b>Pour tout dépenser :</b> '+F(need)+' par jour ('+altF(need)+') jusqu’au 31.';
   const days=Array.from({length:31},(_,i)=>i+1),cum=[];let c=0;spend.forEach(v=>cum.push(c+=v));
   const proj=days.map(d=>d<15?null:spent+pace*(d-15)),ideal=days.map(d=>BJAN/31*d);
   const n1=niceTop(cv(BJAN*1.02));
   chart('c1',{label:'Dépense cumulée de janvier',x0:1,x1:31,y1:n1.top,steps:n1.st,R:96,xt:[1,8,15,22,31],fx:d=>d+' janv.',fy:tickM(n1),
-    series:[{xs:days,ys:ideal.map(cv),c:'--gray',dash:'4 4',w:1.5},{xs:days,ys:proj.map(v=>v==null?null:cv(v)),c:'--red',dash:'5 4',w:1.75},{xs:days.slice(0,15),ys:cum.map(cv),c:'--red',w:2.25}],
+    series:[{xs:days,ys:ideal.map(cv),c:'--muted',dash:'4 4',w:1.5},{xs:days,ys:proj.map(v=>v==null?null:cv(v)),c:'--red',dash:'5 4',w:1.75},{xs:days.slice(0,15),ys:cum.map(cv),c:'--red',w:2.5}],
     marks:[{x:31,y:cv(eom),t:K(eom),pos:'right'}],snap:v=>Math.max(1,Math.min(31,Math.round(v))),
     tip:d=>{const r=d<=15,v=r?cum[d-1]:spent+pace*(d-15);return `<b>${d} janvier${r?'':', projection'}</b><div>Cumul <em>${K(v)}</em></div><div>Rythme cible <em>${K(ideal[d-1])}</em></div>`}});
   const d14=days.slice(0,14);
   chart('c2',{label:'ROAS jour par jour',x0:1,x1:14,y1:50,steps:5,xt:[1,4,7,10,14],fx:d=>d+' janv.',fy:v=>fr(v),
-    series:[{xs:d14,ys:d14.map(()=>40),c:'--gray',dash:'4 4',w:1.5},{xs:d14,ys:roasC,c:'--ink'},{xs:d14,ys:roasR,c:'--red'}],
+    series:[{xs:d14,ys:d14.map(()=>40),c:'--muted',dash:'4 4',w:1.5},{xs:d14,ys:roasC,c:'--ink',w:2.25},{xs:d14,ys:roasR,c:'--red',w:2.25}],
     snap:v=>Math.max(1,Math.min(14,Math.round(v))),
     tip:d=>`<b>${d} janvier</b><div>Vos chiffres <em>${fr(roasC[d-1],1)}</em></div><div>Nos chiffres <em>${fr(roasR[d-1],1)}</em></div><div>Dépense <em>${F(spend[d-1])}</em></div>`});
   const w=[[0,7],[7,14]].map(([s,e])=>{const sp=sum(spend,s,e),se=sp*XR;return[sp,sum(clk,s,e),sum(cconv,s,e),sum(conv,s,e),sum(cval,s,e)/se,sum(val,s,e)/se,sum(comp,s,e)]});
   const lab=['Dépense','Clics','Commandes, vos chiffres','Commandes, nos chiffres','ROAS, vos chiffres','ROAS, nos chiffres',"Clics de l'autre retargeter"];
   const fmt=[F,fr,fr,fr,v=>fr(v,1),v=>fr(v,1),fr];
-  $('weeks').innerHTML='<tr><th></th><th class="n">1–7 janv.</th><th class="n">8–14 janv.</th><th class="n">Évolution</th></tr>'+lab.map((l,i)=>{const a=w[0][i],b=w[1][i],ch=(b-a)/a*100;return `<tr><td>${l}</td><td class="n">${fmt[i](a)}</td><td class="n">${fmt[i](b)}</td><td class="n ${ch>=0?'pos':'neg'}">${ch>=0?'+':'−'}${fr(Math.abs(ch))} %</td></tr>`}).join('');
+  $('weeks').innerHTML='<tr><th></th><th>1–7 janv.</th><th>8–14 janv.</th><th>Évolution</th></tr>'+lab.map((l,i)=>{const a=w[0][i],b=w[1][i],ch=(b-a)/a*100;return `<tr><td>${l}</td><td>${fmt[i](a)}</td><td>${fmt[i](b)}</td><td class="${ch>=0?'pos':'neg'}">${ch>=0?'+':'−'}${fr(Math.abs(ch))}${NB}%</td></tr>`}).join('');
 }
 
 /* simulateur */
 function cmpTable(head,rows){
-  $('cmp').innerHTML=`<tr><th></th><th class="n">${head[0]}</th><th class="n">${head[1]}</th><th class="n">Écart</th></tr>`+rows.map(r=>`<tr class="${r.em?'em':''}"><td>${r.l}</td><td class="n">${r.a}</td><td class="n">${r.b}</td><td class="n ${r.nt?'':(r.good?'pos':'neg')}">${r.d}</td></tr>`).join('');
+  $('cmp').innerHTML=`<tr><th></th><th>${head[0]}</th><th class="sc">${head[1]}</th><th>Écart</th></tr>`+rows.map(r=>`<tr class="${r.em?'em':''}"><td>${r.l}</td><td>${r.a}</td><td class="sc">${r.b}</td><td class="${r.nt?'':(r.good?'pos':'neg')}">${r.d}</td></tr>`).join('');
 }
 const diff=(a,b,fmt,upGood=true)=>{const d=b-a;if(Math.abs(d)<=Math.max(Math.abs(a),Math.abs(b))*0.002)return{d:'=',nt:true};return{d:(d>0?'+':'−')+fmt(Math.abs(d)),good:(d>0)===upGood}};
+const sgn=(d,fmt)=>(d>=0?'+':'−')+fmt(Math.abs(d));
 function jan(){
   const d=+$('n_daily').value;$('r_daily').value=d;$('a_daily').textContent='≈'+NB+fr(d*XR)+NB+'€';
   const sc=v=>{const tot=spent+v*16,ff=f(v),sp=v*16;return{v,tot,share:tot/BJAN*100,gap:Math.max(0,BJAN-tot),lo:R_LO*ff,hi:R_HI*ff,mid:R_MID*ff,sLo:sp*R_LO*ff,sHi:sp*R_HI*ff,s:sp*R_MID*ff}};
   const a=sc(pace),b=sc(d);
   $('warn').textContent=b.tot>BJAN*1.002?'Ce rythme dépasse le budget de janvier de '+K(b.tot-BJAN)+'. Il faudrait l’augmenter.':'';
+  $('say').innerHTML=Math.abs(d-pace)<pace*0.005
+    ?'Au <b>rythme actuel</b> ('+F(pace)+' par jour), janvier finit à <b>'+fr(a.share)+NB+'% du budget</b>. Il resterait <b>'+K(a.gap)+'</b> non dépensés ('+alt(a.gap)+').'
+    :'Avec <b>'+F(d)+' par jour</b> ('+altF(d)+'), vous dépensez <b>'+fr(b.share)+NB+'% du budget</b> de janvier. Ventes estimées du 16 au 31 : <b>'+Kr(b.s)+'</b>, soit <b>'+sgn(b.s-a.s,Kr)+'</b> par rapport au rythme actuel.';
   cmpTable(['Rythme actuel','Votre scénario'],[
     {l:'Dépense par jour',a:F(a.v),b:F(b.v),...diff(a.v,b.v,F)},
     {l:'Total dépensé en janvier',a:K(a.tot),b:K(b.tot),...diff(a.tot,b.tot,K),em:true},
-    {l:'Part du budget',a:fr(a.share)+' %',b:fr(b.share)+' %',...diff(a.share,b.share,v=>fr(v)+' pts')},
+    {l:'Part du budget',a:fr(a.share)+NB+'%',b:fr(b.share)+NB+'%',...diff(a.share,b.share,v=>fr(v)+' pts')},
     {l:'Budget non dépensé',a:K(a.gap),b:K(b.gap),...diff(a.gap,b.gap,K,false)},
     {l:'ROAS attendu, vos chiffres',a:fr(a.lo,1)+'–'+fr(a.hi,1),b:fr(b.lo,1)+'–'+fr(b.hi,1),...diff(a.mid,b.mid,v=>fr(v,1))},
     {l:'Ventes du 16 au 31',a:RANGE(a.sLo,a.sHi),b:RANGE(b.sLo,b.sHi),...diff(a.s,b.s,Kr),em:true},
@@ -406,7 +548,7 @@ function jan(){
   const S=v=>v*16, g=(v,r)=>S(v)*r*f(v);
   const nt=niceTop(cv(g(8000,R_HI)));
   chart('c3',{label:'Ventes attendues selon la dépense par jour',x0:2000,x1:8000,y1:nt.top,steps:nt.st,xt:[2000,4000,6000,8000],fx:(v,last)=>fr(cv(v))+(last?NB+SYM()+' par jour':''),fy:tickM(nt),
-    bands:[{xs,lo:xs.map(v=>cv(g(v,R_LO))),hi:xs.map(v=>cv(g(v,R_HI)))}],series:[{xs,ys:xs.map(v=>cv(g(v,R_MID))),c:'--red'}],vline:6044,
+    bands:[{xs,lo:xs.map(v=>cv(g(v,R_LO))),hi:xs.map(v=>cv(g(v,R_HI)))}],series:[{xs,ys:xs.map(v=>cv(g(v,R_MID))),c:'--red',w:2.5}],vline:6044,
     marks:[{x:d,y:cv(g(d,R_MID)),t:Kr(g(d,R_MID))}],snap:v=>Math.round(Math.max(2000,Math.min(8000,v))/50)*50,
     tip:v=>`<b>${F(v)} par jour</b><div>Ventes <em>${Kr(g(v,R_MID))}</em></div><div>Fourchette <em>${RANGE(g(v,R_LO),g(v,R_HI))}</em></div><div>ROAS <em>${fr(R_MID*f(v),1)}</em></div>`});
 }
@@ -417,13 +559,15 @@ function feb(){
   const sc=(b,pp)=>{const ret=b*(1-pp),nw=b*pp,ff=f(ret/28),n=nw*XR/cpa,nv=P(n*AOV),rs=ret*R_MID*ff,tot=rs+nv;
     return{b,day:b/28,nw,roasLo:R_LO*ff,roasHi:R_HI*ff,rs,rsLo:ret*R_LO*ff,rsHi:ret*R_HI*ff,n,nLo:n/1.2,nHi:n/0.8,tot,roas:tot/b}};
   const a=sc(150000,0),b=sc(B,p);
+  $('warn').textContent='';
+  $('say').innerHTML='Avec <b>'+K(B)+'</b> en février ('+alt(B)+')'+(p>0?', dont <b>'+fr(p*100)+NB+'%</b> pour les nouveaux clients':'')+' : environ <b>'+Kr(b.tot)+'</b> de ventes estimées'+(b.n>=1?' et <b>'+fr(b.nLo)+' à '+fr(b.nHi)+' nouveaux clients</b>':'')+'.';
   cmpTable(['Comme en janvier','Votre scénario'],[
     {l:'Budget du mois',a:K(a.b),b:K(b.b),...diff(a.b,b.b,K)},
     {l:'Dépense par jour',a:F(a.day),b:F(b.day),...diff(a.day,b.day,F)},
     {l:'Dont nouveaux clients',a:K(a.nw),b:K(b.nw),...diff(a.nw,b.nw,K)},
     {l:'ROAS retargeting, vos chiffres',a:fr(a.roasLo,1)+'–'+fr(a.roasHi,1),b:fr(b.roasLo,1)+'–'+fr(b.roasHi,1),...diff((a.roasLo+a.roasHi)/2,(b.roasLo+b.roasHi)/2,v=>fr(v,1))},
     {l:'Ventes retargeting',a:RANGE(a.rsLo,a.rsHi),b:RANGE(b.rsLo,b.rsHi),...diff(a.rs,b.rs,Kr)},
-    {l:'Nouveaux clients',a:'0',b:b.n?fr(b.nLo)+'–'+fr(b.nHi):'0',...diff(a.n,b.n,v=>fr(v))},
+    {l:'Nouveaux clients',a:'0',b:b.n>=1?fr(b.nLo)+'–'+fr(b.nHi):'0',...diff(a.n,b.n,v=>fr(v))},
     {l:'Ventes totales estimées',a:Kr(a.tot),b:Kr(b.tot),...diff(a.tot,b.tot,Kr),em:true},
     {l:'ROAS global',a:fr(a.roas,1),b:fr(b.roas,1),...diff(a.roas,b.roas,v=>fr(v,1))},
   ]);
@@ -434,35 +578,18 @@ function feb(){
   const g=(bb,r,nd)=>{const ret=bb*(1-p),ff=f(ret/28);return ret*r*ff+P(bb*p*XR/cpa/nd*AOV)};
   const nt=niceTop(cv(g(300000,R_HI,0.8)));
   chart('c3',{label:'Ventes estimées selon le budget',x0:50000,x1:300000,y1:nt.top,steps:nt.st,xt:[50000,100000,150000,200000,250000,300000],fx:(v,last)=>fr(cv(v)/1000)+NB+'k'+(last?NB+SYM():''),fy:tickM(nt),
-    bands:[{xs,lo:xs.map(v=>cv(g(v,R_LO,1.2))),hi:xs.map(v=>cv(g(v,R_HI,0.8)))}],series:[{xs,ys:xs.map(v=>cv(g(v,R_MID,1))),c:'--red'}],vline:150000,
+    bands:[{xs,lo:xs.map(v=>cv(g(v,R_LO,1.2))),hi:xs.map(v=>cv(g(v,R_HI,0.8)))}],series:[{xs,ys:xs.map(v=>cv(g(v,R_MID,1))),c:'--red',w:2.5}],vline:150000,
     marks:[{x:B,y:cv(g(B,R_MID,1)),t:Kr(g(B,R_MID,1))}],snap:v=>Math.round(Math.max(50000,Math.min(300000,v))/5000)*5000,
     tip:v=>`<b>Budget ${K(v)}</b><div>Ventes <em>${Kr(g(v,R_MID,1))}</em></div><div>Fourchette <em>${RANGE(g(v,R_LO,1.2),g(v,R_HI,0.8))}</em></div><div>ROAS global <em>${fr(g(v,R_MID,1)/v,1)}</em></div>`});
 }
 function sim(){$('in-jan').style.display=MODE==='jan'?'':'none';$('in-feb').style.display=MODE==='feb'?'':'none';MODE==='jan'?jan():feb()}
 
-/* plan */
-const ACT=[
-  ['Vérifier notre tag : bandeau cookies, doublons, montant envoyé','Notre équipe technique','Semaine 1','go'],
-  ['Comparer vos commandes et les nôtres, une par une','Vous et nous','Dès votre export','you'],
-  ['Écrire une règle de mesure commune','Vous et nous','Lundi','plan'],
-  ['Contrôler les plafonds de budget quotidiens','Nous','Semaine 1','go'],
-  ['Enchérir par segment et élargir les audiences','Nous','Semaines 1 et 2','plan'],
-  ['Mettre en avant vos produits les plus rentables','Nous, avec votre flux produits','Semaines 1 et 2','plan'],
-  ['Retirer les sites qui dépensent sans vendre','Nous','Semaines 1 et 2','plan'],
-  ['Tester de nouvelles publicités (A/B)','Nous','Semaines 1 et 2','plan'],
-  ["Relancer l'in-app et régler la fréquence","Nous, après votre retour",'Semaine 2','you'],
-  ['Test nouveaux clients sur 4 semaines','Nous, après votre accord','À partir de la semaine 2','plan'],
-  ["Répondre sur la facture d'octobre",'Votre Account Manager et notre Finance','Sous 48 heures','go'],
-];
-const ST={go:['s-go','En cours'],you:['s-you','Dépend de vous'],plan:['s-plan','Prévu']};
-$('acts').innerHTML='<tr><th>Action</th><th>Qui</th><th>Quand</th><th>Statut</th></tr>'+ACT.map(([a,q,w,s])=>`<tr><td class="w">${a}</td><td style="text-align:left">${q}</td><td style="text-align:left">${w}</td><td><span class="status ${ST[s][0]}"><i></i>${ST[s][1]}</span></td></tr>`).join('');
-document.querySelectorAll('#acts th').forEach((th,i)=>{if(i>0&&i<3)th.style.textAlign='left'});
-
 /* wiring */
 function render(){suivi();sim()}
-document.querySelectorAll('.toggle button').forEach(b=>b.addEventListener('click',()=>{CUR=b.dataset.c;document.querySelectorAll('.toggle button').forEach(x=>x.classList.toggle('on',x===b));render()}));
-document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.v));render()}));
-document.querySelectorAll('.period button').forEach(b=>b.addEventListener('click',()=>{MODE=b.dataset.m;document.querySelectorAll('.period button').forEach(x=>x.classList.toggle('on',x===b));sim()}));
+const on=(sel,b)=>document.querySelectorAll(sel).forEach(x=>x.classList.toggle('on',x===b));
+document.querySelectorAll('#cur button').forEach(b=>b.addEventListener('click',()=>{CUR=b.dataset.c;on('#cur button',b);render()}));
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{on('nav button',b);document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.v));render()}));
+document.querySelectorAll('.period button').forEach(b=>b.addEventListener('click',()=>{MODE=b.dataset.m;on('.period button',b);sim()}));
 document.querySelectorAll('.links button').forEach(b=>b.addEventListener('click',()=>{$('n_daily').value=b.dataset.d;sim()}));
 const pair=(n,r)=>{$(r).addEventListener('input',()=>{$(n).value=$(r).value;sim()});$(n).addEventListener('input',()=>{if($(n).value!=='')sim()})};
 pair('n_daily','r_daily');pair('n_bud','r_bud');pair('n_new','r_new');pair('n_cpa','r_cpa');
