@@ -4,239 +4,281 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Elektronik.de · Tableau de bord</title>
+<title>Elektronik.de · Retargeting, janvier 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   color-scheme:light;
-  --page:#f5f5f7;--surface:#ffffff;--surface2:#fafafb;--ink:#17141a;--ink2:#5b5761;--muted:#8d8994;
-  --line:#e8e6eb;--grid:#efedf1;--axis:#d6d3da;
-  --red:#ec4434;--red2:#c9321f;--redsoft:rgba(236,68,52,.09);--band:rgba(236,68,52,.14);
-  --char:#17141a;--gray:#aaa6b0;
-  --good:#0e7a3c;--goodbg:#e6f4ec;--warn:#8a5a00;--warnbg:#fdf1d8;--bad:#b3261e;--badbg:#fbe9e7;--info:#4a3aa7;--infobg:#eeebfa;
-  --hdr1:#0f0b12;--hdr2:#3a2140;
-  --shadow:0 1px 2px rgba(20,16,24,.04),0 4px 16px rgba(20,16,24,.04);
+  --bg:#ffffff;--panel:#f6f6f5;--ink:#141414;--ink2:#4a4a4a;--ink3:#737373;
+  --rule:#141414;--line:#e3e3e1;--grid:#eeeeec;
+  --red:#d9362a;--redtint:rgba(217,54,42,.13);--gray:#9b9b98;
+  --ok:#1c7a43;--wait:#8a5a00;--todo:#4a4a4a;
+  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;--mono:var(--sans);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --page:#0c0a0e;--surface:#16131a;--surface2:#1c1821;--ink:#f7f5fa;--ink2:#c9c4cf;--muted:#8b8492;
-    --line:#2a2530;--grid:#241f29;--axis:#3a3340;
-    --red:#f05646;--red2:#ff7a6b;--redsoft:rgba(240,86,70,.14);--band:rgba(240,86,70,.20);
-    --char:#f2eff5;--gray:#7f7886;
-    --good:#3ccf7a;--goodbg:rgba(60,207,122,.12);--warn:#f5b83d;--warnbg:rgba(245,184,61,.12);--bad:#ff7a6b;--badbg:rgba(255,122,107,.12);--info:#a79cf0;--infobg:rgba(167,156,240,.14);
-    --shadow:none;
+    --bg:#121212;--panel:#1b1b1b;--ink:#f2f2f0;--ink2:#c4c4c1;--ink3:#8f8f8c;
+    --rule:#f2f2f0;--line:#2e2e2e;--grid:#242424;
+    --red:#f0584b;--redtint:rgba(240,88,75,.20);--gray:#6f6f6c;
+    --ok:#4cc27c;--wait:#e3ad4a;--todo:#c4c4c1;
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --page:#0c0a0e;--surface:#16131a;--surface2:#1c1821;--ink:#f7f5fa;--ink2:#c9c4cf;--muted:#8b8492;
-  --line:#2a2530;--grid:#241f29;--axis:#3a3340;
-  --red:#f05646;--red2:#ff7a6b;--redsoft:rgba(240,86,70,.14);--band:rgba(240,86,70,.20);
-  --char:#f2eff5;--gray:#7f7886;
-  --good:#3ccf7a;--goodbg:rgba(60,207,122,.12);--warn:#f5b83d;--warnbg:rgba(245,184,61,.12);--bad:#ff7a6b;--badbg:rgba(255,122,107,.12);--info:#a79cf0;--infobg:rgba(167,156,240,.14);
-  --shadow:none;
+  --bg:#121212;--panel:#1b1b1b;--ink:#f2f2f0;--ink2:#c4c4c1;--ink3:#8f8f8c;
+  --rule:#f2f2f0;--line:#2e2e2e;--grid:#242424;
+  --red:#f0584b;--redtint:rgba(240,88,75,.20);--gray:#6f6f6c;
+  --ok:#4cc27c;--wait:#e3ad4a;--todo:#c4c4c1;
 }
 *{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--page);color:var(--ink);font:14px/1.5 Inter,Arial,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
-.num{font-variant-numeric:tabular-nums}
-/* header */
-.top{background:linear-gradient(115deg,var(--hdr1) 0%,var(--hdr1) 45%,var(--hdr2) 100%);color:#fff}
-.top .in{max-width:1200px;margin:0 auto;padding:22px 20px 0}
-.brandrow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
-.eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.16em;color:#ff8a7d}
-.bars{display:inline-flex;flex-direction:column;gap:3px}.bars i{display:block;width:18px;height:3px;background:#ec4434}
-.top h1{font-size:26px;font-weight:700;margin:6px 0 4px;letter-spacing:-.01em}
-.chips{display:flex;gap:8px;flex-wrap:wrap;font-size:12.5px;color:#d9d3de}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
-.chip.mock{background:rgba(236,68,52,.18);border-color:rgba(236,68,52,.4);color:#ffd2cc;font-weight:600}
-.seg{display:inline-flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:3px}
-.seg button{font:inherit;font-size:12.5px;font-weight:600;border:0;background:transparent;color:#d9d3de;padding:6px 12px;border-radius:7px;cursor:pointer}
-.seg button.on{background:#fff;color:#17141a}
-nav.tabs{display:flex;gap:4px;margin-top:18px}
-nav.tabs button{font:inherit;font-size:14px;font-weight:600;border:0;background:transparent;color:#bdb6c3;padding:12px 16px;cursor:pointer;border-bottom:2px solid transparent}
-nav.tabs button.on{color:#fff;border-bottom-color:#ec4434}
-nav.tabs button:hover{color:#fff}
-/* layout */
-main{max-width:1200px;margin:0 auto;padding:22px 20px 40px}
+html,body{margin:0;background:var(--bg)}
+body{color:var(--ink);font:16px/1.55 var(--sans);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+.fig{font-variant-numeric:tabular-nums}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+/* masthead */
+.mast{padding:28px 0 0}
+.mast .row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding-bottom:18px;border-bottom:2px solid var(--rule)}
+.mast h1{font-size:30px;line-height:1.15;font-weight:700;margin:0;letter-spacing:-.01em}
+.mast p{margin:6px 0 0;color:var(--ink2);font-size:15px}
+.mast .right{display:flex;align-items:center;gap:16px;font-size:14px;color:var(--ink3)}
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.toggle button{font:inherit;font-size:14px;font-weight:500;border:0;background:transparent;color:var(--ink2);padding:6px 12px;cursor:pointer}
+.toggle button+button{border-left:1px solid var(--line)}
+.toggle button.on{background:var(--ink);color:var(--bg)}
+nav{display:flex;gap:28px;border-bottom:1px solid var(--line)}
+nav button{font:inherit;font-size:15px;font-weight:500;border:0;background:transparent;color:var(--ink3);padding:14px 0 12px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+nav button.on{color:var(--ink);border-bottom-color:var(--red)}
+nav button:hover{color:var(--ink)}
+main{padding:32px 0 48px}
 .view{display:none}.view.on{display:block}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.gsim{display:grid;grid-template-columns:330px 1fr;gap:14px;align-items:start}
-@media (max-width:1000px){.grid4{grid-template-columns:repeat(2,1fr)}.grid2,.gsim{grid-template-columns:1fr}}
-@media (max-width:560px){.grid4{grid-template-columns:1fr}}
-.mt{margin-top:14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
-.card h2{font-size:15px;font-weight:700;margin:0}
-.card .sub{color:var(--muted);font-size:12.5px;margin:2px 0 12px}
-.kpi .lab{font-size:12px;font-weight:600;color:var(--ink2)}
-.kpi .val{font-size:26px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px}
-.kpi .foot{font-size:12.5px;color:var(--ink2);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.meter{height:6px;border-radius:99px;background:var(--grid);margin:10px 0 8px;position:relative}
-.meter i{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--red)}
-.meter b{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:2px;background:var(--char)}
-.pill{display:inline-flex;align-items:center;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
-.ok{background:var(--goodbg);color:var(--good)}.warn{background:var(--warnbg);color:var(--warn)}.ko{background:var(--badbg);color:var(--bad)}.inf{background:var(--infobg);color:var(--info)}
-.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink2);margin:0 0 6px}
-.legend span{display:inline-flex;align-items:center;gap:6px}
-.sw{width:14px;height:3px;border-radius:2px;display:inline-block}
-.dsh{width:16px;border-top:2px dashed var(--gray);display:inline-block}
-.dshr{width:16px;border-top:2px dashed var(--red);display:inline-block}
-.bnd{width:14px;height:10px;border-radius:3px;background:var(--band);display:inline-block}
-svg{width:100%;height:auto;display:block;overflow:visible}
-svg text{fill:var(--muted);font-size:11px;font-family:Inter,Arial,sans-serif}
+h2{font-size:19px;line-height:1.3;font-weight:600;margin:0 0 4px}
+.lede{color:var(--ink2);font-size:15px;margin:0 0 16px;max-width:70ch}
+section+section{margin-top:44px}
+/* summary strip */
+.strip{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.strip>div{padding:18px 20px 20px}
+.strip>div+div{border-left:1px solid var(--line)}
+.strip>div:first-child{padding-left:0}
+.strip .k{font-size:14px;color:var(--ink2);font-weight:500}
+.strip .v{font-size:32px;font-weight:600;line-height:1.1;margin:8px 0 6px;letter-spacing:-.015em}
+.strip .v small{font-size:15px;font-weight:400;color:var(--ink3);letter-spacing:0}
+.strip .n{font-size:14px;color:var(--ink2);line-height:1.45}
+.strip .x{font-size:14px;color:var(--ink3);margin:-2px 0 4px}
+.late{color:var(--red);font-weight:500}
+.bar{position:relative;height:8px;background:var(--grid);margin:12px 0 8px}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--red)}
+.bar b{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--ink)}
+@media (max-width:960px){.strip{grid-template-columns:1fr 1fr}.strip>div:nth-child(3){border-left:0;padding-left:0}.strip>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:560px){.strip{grid-template-columns:1fr}.strip>div{border-left:0 !important;padding-left:0}.strip>div+div{border-top:1px solid var(--line)}}
+/* charts */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media (max-width:960px){.two{grid-template-columns:1fr;gap:36px}}
+.key{display:flex;flex-wrap:wrap;gap:18px;font-size:14px;color:var(--ink2);margin:0 0 8px}
+.key span{display:inline-flex;align-items:center;gap:7px}
+.k-line{width:16px;height:2px;display:inline-block}
+.k-dash{width:16px;border-top:2px dashed currentColor;display:inline-block}
+.k-band{width:14px;height:10px;background:var(--redtint);display:inline-block}
+svg{display:block;overflow:visible;max-width:100%}
+svg text{fill:var(--ink3);font-size:12px;font-family:var(--sans)}
+svg text.lab{fill:var(--ink);font-size:13px;font-weight:600;paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
 .cbox{position:relative}
-.tip{position:absolute;pointer-events:none;display:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.14);padding:9px 11px;font-size:12.5px;min-width:200px;z-index:4}
-.tip b{display:block;margin-bottom:4px;font-size:12.5px}.tip div{display:flex;justify-content:space-between;gap:14px;color:var(--ink2)}.tip em{font-style:normal;color:var(--ink);font-weight:600}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:10px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
-th{color:var(--muted);font-weight:600;font-size:12px}
-th:first-child,td:first-child{text-align:left;color:var(--ink)}
-tr:last-child td{border-bottom:0}
-.tbl{overflow-x:auto}
-.up{color:var(--good)}.down{color:var(--bad)}
+.tip{position:absolute;pointer-events:none;display:none;background:var(--bg);border:1px solid var(--ink);padding:8px 10px;font-size:13px;min-width:200px;z-index:4}
+.tip b{display:block;margin-bottom:4px;font-weight:600}.tip div{display:flex;justify-content:space-between;gap:16px;color:var(--ink2)}.tip em{font-style:normal;color:var(--ink);font-weight:500}
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:500;font-size:13.5px;color:var(--ink3);border-bottom:1px solid var(--ink)}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+td.n,th.n{font-size:15px}
+th.n{font-size:13.5px}
+tr.em td{font-weight:600}
+.pos{color:var(--ok)}.neg{color:var(--red)}
+.scroll{overflow-x:auto}
+@media (max-width:560px){table{font-size:14px}td.n{font-size:14px}th,td{padding:9px 6px}th:first-child,td:first-child{white-space:normal;padding-left:0}th.n{font-size:12.5px;white-space:normal}td:last-child,th:last-child{padding-right:0}
+  .stack,.stack tbody{display:block}.stack tr{display:grid;grid-template-columns:1fr 1fr .75fr}
+  .stack th:first-child{display:none}.stack td:first-child{grid-column:1/-1;border-bottom:0;padding:12px 0 0;font-weight:500}
+  .stack td.n{font-size:13.5px;padding:4px 0 10px 6px}.stack th.n{padding:8px 0 8px 6px}}
 /* simulator */
-.modes{display:inline-flex;background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:3px;margin-bottom:14px}
-.modes button{font:inherit;font-size:13px;font-weight:600;border:0;background:transparent;color:var(--ink2);padding:7px 14px;border-radius:7px;cursor:pointer}
-.modes button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.field{padding:14px 0;border-bottom:1px solid var(--line)}
-.field:last-child{border-bottom:0;padding-bottom:0}.field:first-of-type{padding-top:4px}
-.field .fl{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.field .fl span:first-child{font-weight:600;font-size:13.5px}
-.field .fv{font-weight:700;color:var(--red);font-size:13.5px;white-space:nowrap}
-.field small{display:block;color:var(--muted);font-size:12px;margin-top:6px;line-height:1.45}
-input[type=range]{width:100%;accent-color:var(--red);margin:10px 0 0}
-.quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.quick button{font:inherit;font-size:12px;font-weight:600;border:1px solid var(--line);background:var(--surface2);color:var(--ink);padding:5px 10px;border-radius:8px;cursor:pointer}
-.quick button:hover{border-color:var(--red);color:var(--red)}
-.res{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media (max-width:1000px){.res{grid-template-columns:repeat(2,1fr)}}
-.res>div{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
-.res .lab{font-size:12px;color:var(--ink2);font-weight:600}
-.res .val{font-size:20px;font-weight:700;margin:4px 0 2px;letter-spacing:-.01em}
-.res .foot{font-size:12px;color:var(--muted)}
-.res .hl{border-color:rgba(236,68,52,.35);background:var(--redsoft)}
-details{margin-top:12px;border-top:1px solid var(--line);padding-top:10px;font-size:12.5px;color:var(--ink2)}
-details summary{cursor:pointer;font-weight:600;color:var(--ink)}
-details ul{margin:8px 0 0;padding-left:18px}details li{margin:3px 0}
+.period{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:24px}
+.period button{font:inherit;font-size:15px;font-weight:500;border:0;background:transparent;color:var(--ink2);padding:8px 16px;cursor:pointer}
+.period button+button{border-left:1px solid var(--line)}
+.period button.on{background:var(--ink);color:var(--bg)}
+.sim{display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:start}
+.sim>*,.two>*{min-width:0}
+@media (max-width:960px){.sim{grid-template-columns:1fr;gap:28px}}
+.inputs{background:var(--panel);padding:20px 22px}
+.inputs h3{font-size:15px;font-weight:600;margin:0 0 4px}
+.inputs .hint{font-size:14px;color:var(--ink2);margin:0 0 14px}
+.fld{padding:14px 0;border-top:1px solid var(--line)}
+.fld label{display:block;font-weight:500;font-size:15px}
+.fld .val{display:flex;align-items:baseline;gap:8px;margin-top:8px}
+.fld input[type=number]{font:500 18px var(--sans);font-variant-numeric:tabular-nums;width:130px;padding:6px 8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:4px}
+.fld .u{color:var(--ink3);font-size:14px}
+.fld .alt{color:var(--ink3);font-size:14px;margin-left:auto}
+.fld input[type=range]{width:100%;accent-color:var(--red);margin:12px 0 2px}
+.fld p{font-size:13.5px;color:var(--ink3);margin:6px 0 0;line-height:1.45}
+.links{display:flex;gap:14px;margin-top:8px;font-size:14px}
+.links button{font:inherit;font-size:14px;border:0;background:none;padding:0;color:var(--ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.links button:hover{color:var(--red)}
+.fld p.warn{color:var(--red);font-size:14px;margin-top:10px}.fld p.warn:empty{display:none}
+.method{margin-top:18px;font-size:14px;color:var(--ink2);max-width:75ch}
+.method p{margin:0 0 6px}
 /* plan */
-.act{list-style:none;margin:0;padding:0}
-.act li{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
-.act li:last-child{border-bottom:0}
-.act .t{font-weight:600;font-size:13.5px}.act .s{color:var(--muted);font-size:12px}
-.need{list-style:none;margin:0;padding:0;counter-reset:n}
-.need li{counter-increment:n;display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
-.need li:last-child{border-bottom:0}
-.need li::before{content:counter(n);flex:none;width:20px;height:20px;border-radius:50%;background:var(--redsoft);color:var(--red);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
-.next{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:14px}
-.next b{font-size:15px}
-footer{max-width:1200px;margin:0 auto;padding:0 20px 34px;color:var(--muted);font-size:12px}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:14px}
+.status i{width:8px;height:8px;display:inline-block}
+.s-go i{background:var(--wait)}.s-go{color:var(--wait)}
+.s-you i{background:var(--red)}.s-you{color:var(--red)}
+.s-plan i{background:var(--gray)}.s-plan{color:var(--todo)}
+td.w{white-space:normal;min-width:260px}
+.needs{margin:0;padding-left:22px}
+.needs li{padding:5px 0;color:var(--ink)}
+.next{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:15px;color:var(--ink2)}
+.next b{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--ink3);font-size:13.5px}
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="in">
-    <div class="brandrow">
+<div class="wrap">
+  <header class="mast">
+    <div class="row">
       <div>
-        <div class="eyebrow"><span class="bars"><i></i><i></i></span>TABLEAU DE BORD RETARGETING</div>
-        <h1>Elektronik.de</h1>
-        <div class="chips"><span class="chip">Données au 15 janvier 2026</span><span class="chip">Mis à jour chaque lundi</span><span class="chip">1 PLN = 0,22 €</span><span class="chip mock">Maquette</span></div>
+        <h1>Elektronik.de, retargeting</h1>
+        <p>Janvier 2026. Données arrêtées au 15 janvier, mises à jour chaque lundi. 1 PLN = 0,22 €.</p>
       </div>
-      <div class="seg" role="group" aria-label="Devise"><button data-c="PLN" class="on">PLN</button><button data-c="EUR">EUR</button></div>
+      <div class="right">
+        <span>Maquette</span>
+        <div class="toggle" role="group" aria-label="Devise"><button data-c="PLN" class="on">PLN</button><button data-c="EUR">EUR</button></div>
+      </div>
     </div>
-    <nav class="tabs" role="tablist">
-      <button data-v="ov" class="on" role="tab">Vue d'ensemble</button>
+    <nav role="tablist">
+      <button data-v="suivi" class="on" role="tab">Suivi</button>
       <button data-v="sim" role="tab">Simulateur</button>
       <button data-v="plan" role="tab">Plan d'action</button>
     </nav>
-  </div>
-</header>
+  </header>
 
-<main>
-  <!-- ============ VUE D'ENSEMBLE ============ -->
-  <section class="view on" id="v-ov">
-    <div class="grid4">
-      <div class="card kpi"><div class="lab">Budget de janvier dépensé</div><div class="val num" id="k1"></div><div class="meter" aria-hidden="true"><i id="k1m"></i><b id="k1t"></b></div><div class="foot" id="k1d"></div></div>
-      <div class="card kpi"><div class="lab">Fin de mois au rythme actuel</div><div class="val num" id="k2"></div><div class="foot" id="k2d"></div></div>
-      <div class="card kpi"><div class="lab">ROAS · objectif 40</div><div class="val num" id="k3"></div><div class="foot" id="k3d"></div></div>
-      <div class="card kpi"><div class="lab">Ventes grâce à nous · 1er–14 janv.</div><div class="val num" id="k4"></div><div class="foot" id="k4d"></div></div>
-    </div>
-    <div class="grid2 mt">
-      <div class="card"><h2>Rythme de dépense</h2><p class="sub">Réel jour par jour, puis la fin du mois si le rythme continue.</p>
-        <div class="legend"><span><i class="sw" style="background:var(--red)"></i>Réel</span><span><i class="dshr"></i>Si le rythme continue</span><span><i class="dsh"></i>Pour tout dépenser</span></div>
-        <div class="cbox" id="c1"></div></div>
-      <div class="card"><h2>ROAS jour par jour</h2><p class="sub">Vos chiffres et les nôtres, face à l'objectif. L'écart se referme une fois le suivi corrigé.</p>
-        <div class="legend"><span><i class="sw" style="background:var(--char)"></i>Vos chiffres</span><span><i class="sw" style="background:var(--red)"></i>Nos chiffres</span><span><i class="dsh"></i>Objectif 40</span></div>
-        <div class="cbox" id="c2"></div></div>
-    </div>
-    <div class="card mt"><h2>Semaine par semaine</h2><p class="sub">Pour suivre l'évolution d'une semaine à l'autre.</p><div class="tbl"><table id="weeks"></table></div></div>
-  </section>
-
-  <!-- ============ SIMULATEUR ============ -->
-  <section class="view" id="v-sim">
-    <div class="modes" role="group" aria-label="Période"><button data-m="jan" class="on">Fin de janvier</button><button data-m="feb">Février</button></div>
-    <div class="gsim">
-      <div class="card">
-        <h2 id="simTitle"></h2><p class="sub" id="simSub"></p>
-        <div id="f-jan">
-          <div class="field"><div class="fl"><span>Dépense par jour</span><span class="fv num" id="o_daily"></span></div>
-            <input id="daily" type="range" min="2000" max="8000" step="1" aria-label="Dépense par jour">
-            <div class="quick"><button data-d="3553">Rythme actuel</button><button data-d="6044">Tout le budget</button></div>
-            <small>Rythme actuel : ≈ 3 553 PLN (782 €) par jour. Pour dépenser les 150 000 PLN : ≈ 6 044 PLN (1 330 €) par jour.</small></div>
+  <main>
+    <!-- SUIVI -->
+    <div class="view on" id="v-suivi">
+      <section>
+        <div class="strip">
+          <div>
+            <div class="k">Budget dépensé</div>
+            <div class="v fig" id="s1"></div><div class="x" id="s1x"></div>
+            <div class="bar" aria-hidden="true"><i id="s1bar"></i><b id="s1mark"></b></div>
+            <div class="n" id="s1n"></div>
+          </div>
+          <div><div class="k">Fin de mois au rythme actuel</div><div class="v fig" id="s2"></div><div class="x" id="s2x"></div><div class="n" id="s2n"></div></div>
+          <div><div class="k">ROAS, objectif 40</div><div class="v fig" id="s3"></div><div class="n" id="s3n"></div></div>
+          <div><div class="k">Ventes attribuées, 1er au 14</div><div class="v fig" id="s4"></div><div class="x" id="s4x"></div><div class="n" id="s4n"></div></div>
         </div>
-        <div id="f-feb" style="display:none">
-          <div class="field"><div class="fl"><span>Budget du mois</span><span class="fv num" id="o_bud"></span></div>
-            <input id="bud" type="range" min="50000" max="300000" step="5000" aria-label="Budget de février">
-            <div class="quick"><button data-b="150000">150 000 PLN</button><button data-b="200000">200 000 PLN</button></div></div>
-          <div class="field"><div class="fl"><span>Part pour les nouveaux clients</span><span class="fv num" id="o_new"></span></div>
-            <input id="newp" type="range" min="0" max="30" step="1" aria-label="Part du budget pour les nouveaux clients">
-            <small>Le reste va au retargeting, pour les gens déjà venus sur votre site.</small></div>
-          <div class="field"><div class="fl"><span>Coût cible d'un nouveau client</span><span class="fv num" id="o_cpa"></span></div>
-            <input id="cpa" type="range" min="10" max="120" step="1" aria-label="Coût cible d'un nouveau client">
-            <small>Ce que vous êtes prêt à payer en pub pour gagner un client qui n'a jamais acheté chez vous.</small></div>
+      </section>
+
+      <section class="two">
+        <div>
+          <h2>La dépense prend du retard</h2>
+          <p class="lede">Cumul réel au 15 janvier, puis la suite si le rythme ne change pas.</p>
+          <div class="key"><span><i class="k-line" style="background:var(--red)"></i>Réel</span><span style="color:var(--red)"><i class="k-dash"></i><span style="color:var(--ink2)">Si rien ne change</span></span><span style="color:var(--gray)"><i class="k-dash"></i><span style="color:var(--ink2)">Pour tout dépenser</span></span></div>
+          <div class="cbox" id="c1"></div>
+        </div>
+        <div>
+          <h2>Deux mesures du même ROAS</h2>
+          <p class="lede">Mêmes clics, mais votre outil compte deux fois plus de ventes que le nôtre. On vérifie notre suivi.</p>
+          <div class="key"><span><i class="k-line" style="background:var(--ink)"></i>Vos chiffres</span><span><i class="k-line" style="background:var(--red)"></i>Nos chiffres</span><span style="color:var(--gray)"><i class="k-dash"></i><span style="color:var(--ink2)">Objectif 40</span></span></div>
+          <div class="cbox" id="c2"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Semaine 1 et semaine 2</h2>
+        <div class="scroll"><table id="weeks" class="stack"></table></div>
+      </section>
+    </div>
+
+    <!-- SIMULATEUR -->
+    <div class="view" id="v-sim">
+      <div class="period" role="group" aria-label="Période"><button data-m="jan" class="on">Fin de janvier</button><button data-m="feb">Février</button></div>
+      <div class="sim">
+        <div class="inputs">
+          <div id="in-jan">
+            <h3>Du 16 au 31 janvier</h3>
+            <p class="hint">Combien dépenser par jour pour finir le mois.</p>
+            <div class="fld">
+              <label for="n_daily">Dépense par jour</label>
+              <div class="val"><input id="n_daily" type="number" min="1000" max="10000" step="50"><span class="u">PLN</span><span class="alt" id="a_daily"></span></div>
+              <input id="r_daily" type="range" min="2000" max="8000" step="1" aria-label="Dépense par jour">
+              <div class="links"><button data-d="3553">Rythme actuel</button><button data-d="6044">Dépenser tout le budget</button></div>
+              <p class="warn" id="warn"></p>
+            </div>
+          </div>
+          <div id="in-feb" style="display:none">
+            <h3>Février, 28 jours</h3>
+            <p class="hint">Préparer le mois prochain.</p>
+            <div class="fld">
+              <label for="n_bud">Budget du mois</label>
+              <div class="val"><input id="n_bud" type="number" min="30000" max="400000" step="5000"><span class="u">PLN</span><span class="alt" id="a_bud"></span></div>
+              <input id="r_bud" type="range" min="50000" max="300000" step="5000" aria-label="Budget du mois">
+            </div>
+            <div class="fld">
+              <label for="n_new">Part pour les nouveaux clients</label>
+              <div class="val"><input id="n_new" type="number" min="0" max="40" step="1"><span class="u">%</span><span class="alt" id="a_new"></span></div>
+              <input id="r_new" type="range" min="0" max="30" step="1" aria-label="Part pour les nouveaux clients">
+              <p>Le reste finance le retargeting.</p>
+            </div>
+            <div class="fld">
+              <label for="n_cpa">Coût cible d'un nouveau client</label>
+              <div class="val"><input id="n_cpa" type="number" min="5" max="300" step="1"><span class="u">€</span></div>
+              <input id="r_cpa" type="range" min="10" max="120" step="1" aria-label="Coût cible d'un nouveau client">
+              <p>Ce que vous acceptez de payer en publicité pour un premier achat.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="scroll"><table id="cmp" class="stack"></table></div>
+          <section style="margin-top:32px">
+            <h2 id="ch_t"></h2>
+            <p class="lede" id="ch_s"></p>
+            <div class="key"><span><i class="k-band"></i>Fourchette</span><span><i class="k-line" style="background:var(--red)"></i>Estimation</span><span style="color:var(--gray)"><i class="k-dash"></i><span style="color:var(--ink2)" id="ch_ref"></span></span></div>
+            <div class="cbox" id="c3"></div>
+          </section>
+          <div class="method">
+            <p><b>Comment c'est calculé.</b> Point de départ : vos chiffres du 1er au 14 janvier, avec un ROAS de 36,4 en moyenne (35,3 et 38,0 selon la semaine). Quand la dépense par jour augmente, le ROAS baisse un peu : en semaine 2, 42 % de dépense en plus ont coûté 7 % de ROAS, et on applique la même tendance. Nouveaux clients : budget dédié divisé par le coût cible, à 20 % près, avec votre panier moyen actuel de 144 € pour le premier achat.</p>
+            <p>Ce sont des ordres de grandeur pour décider ensemble, pas des engagements.</p>
+          </div>
         </div>
       </div>
-      <div>
-        <div class="res" id="res"></div>
-        <div class="card mt"><h2 id="chTitle"></h2><p class="sub" id="chSub"></p>
-          <div class="legend" id="chLeg"></div>
-          <div class="cbox" id="c3"></div>
-          <details><summary>Comment on calcule</summary><ul>
-            <li>Tout part de vos chiffres du 1er au 14 janvier : ROAS de 36,4 en moyenne, entre 35,3 et 38,0 selon la semaine.</li>
-            <li>Plus on dépense par jour, plus le ROAS baisse un peu : en semaine 2, +42 % de dépense a donné −7 % de ROAS. Le simulateur applique la même tendance.</li>
-            <li>Nouveaux clients : budget dédié ÷ coût cible, avec une marge de ± 20 %. La valeur de leur premier achat reprend votre panier moyen actuel (144 €).</li>
-            <li>Ce sont des estimations pour décider ensemble, pas des engagements.</li></ul></details>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <!-- ============ PLAN D'ACTION ============ -->
-  <section class="view" id="v-plan">
-    <div class="grid2">
-      <div class="card"><h2>Notre plan d'action</h2><p class="sub">Ce qu'on fait, et où on en est.</p><ul class="act" id="actions"></ul></div>
-      <div class="card"><h2>Ce dont on a besoin de votre côté</h2><p class="sub">Chaque point débloque une partie du plan.</p>
-        <ul class="need">
-          <li>Vos règles de mesure pour nos ventes (délai après un clic, après une vue)</li>
-          <li>Vos commandes du 1er au 14 janvier, avec leur numéro</li>
-          <li>Le rebond par source de trafic, et vs janvier 2025</li>
-          <li>Les changements récents : site, paiement, bandeau cookies, in-app</li>
-          <li>Votre définition d'un nouveau client, et son coût cible</li>
-          <li>Votre priorité si on doit choisir : tout le budget ou ROAS 40</li>
-          <li>Un contact technique (site, tags)</li>
-        </ul>
-        <div class="next"><span class="pill inf">Prochain point</span><div><b>Lundi · 30 min</b><div class="sub" style="margin:0">Revue des chiffres et du plan. Toutes les 2 semaines, puis chaque mois.</div></div></div>
-      </div>
+    <!-- PLAN -->
+    <div class="view" id="v-plan">
+      <section>
+        <h2>Ce qu'on fait</h2>
+        <div class="scroll"><table id="acts"></table></div>
+      </section>
+      <section>
+        <h2>Ce qu'il nous faut de votre côté</h2>
+        <ol class="needs">
+          <li>Vos règles de mesure pour nos ventes : délai après un clic, après une vue.</li>
+          <li>Vos commandes du 1er au 14 janvier, avec leur numéro.</li>
+          <li>Le taux de rebond par source de trafic, et celui de janvier 2025.</li>
+          <li>Ce qui a changé récemment : site, paiement, bandeau cookies, in-app.</li>
+          <li>Votre définition d'un nouveau client, et ce qu'il peut coûter.</li>
+          <li>Votre priorité si les deux ne tiennent pas ensemble : tout le budget ou un ROAS de 40.</li>
+          <li>Un contact technique pour le site et les tags.</li>
+        </ol>
+        <p class="next"><b>Prochain point : lundi, 30 minutes.</b> Ensuite toutes les deux semaines, puis une fois par mois.</p>
+      </section>
     </div>
-  </section>
-</main>
-<footer>Maquette préparée par Thomas Germain pour un case study d'Account Management. Client fictif, chiffres fournis dans le case. Les projections sont des estimations, pas des engagements.</footer>
+  </main>
+
+  <footer>Maquette réalisée par Thomas Germain pour un case study d'Account Management. Client fictif, chiffres du case. Les projections sont des estimations, pas des engagements.</footer>
+</div>
 
 <script>
-const XR=0.22, BJAN=150000;
+const XR=0.22, BJAN=150000, NB=' ';
 const spend=[2820.38,2670.7,2206.25,2759.18,2803.2,3186.85,3989.76,4294.32,3071.15,3761.76,5522.74,4607.3,4217.87,3552.71,3833.02];
 const val=[10885.47,11681.52,6372.77,11103.11,8557.45,16144.41,13071.39,12531.52,9721.03,15743.3,18616.91,15932.55,17211.59,13977.24];
 const cval=[22236.3,22105.74,18453.28,22712.66,26766.76,28440.24,30228.48,33158.33,26574.29,28714.49,39713.81,41219.63,28915.15,27076.26];
@@ -246,162 +288,187 @@ const cconv=[177,142,144,162,185,179,215,182,206,184,292,311,190,184];
 const comp=[16807,18249,16046,16549,16457,15961,19497,11917,11077,9596,15995,12426,11101,10913];
 const sum=(a,s=0,e=a.length)=>a.slice(s,e).reduce((x,y)=>x+y,0);
 const eur=spend.map(v=>v*XR), roasR=val.map((v,i)=>v/eur[i]), roasC=cval.map((v,i)=>v/eur[i]);
-const spent=sum(spend), pace=spent/15, need=(BJAN-spent)/16, baseDaily=sum(spend,0,14)/14;
+const spent=sum(spend), pace=spent/15, need=(BJAN-spent)/16, base=sum(spend,0,14)/14;
 const R_MID=sum(cval)/sum(eur,0,14), R_LO=35.3, R_HI=38.0, EL=0.21, AOV=144;
 const $=id=>document.getElementById(id);
 const fr=(v,d=0)=>v.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 let CUR='PLN', MODE='jan';
-const NB=' ';
-// PLN amount -> primary currency (short) + the other one
-const mk=p=>CUR==='PLN'?fr(p/1000,1)+NB+'k PLN':fr(p*XR/1000,1)+NB+'k €';
-const mk2=p=>CUR==='PLN'?'≈ '+fr(p*XR/1000,1)+NB+'k €':'≈ '+fr(p/1000,1)+NB+'k PLN';
-const mf=p=>CUR==='PLN'?fr(p)+NB+'PLN':fr(p*XR)+NB+'€';
-const mf2=p=>CUR==='PLN'?fr(p*XR)+NB+'€':fr(p)+NB+'PLN';
-const eurk=e=>fr(e/1000)+NB+'k €';
-const factor=d=>Math.min(1.1,Math.pow(d/baseDaily,-EL));
+const f=d=>Math.min(1.1,Math.pow(d/base,-EL));
 
-/* ---------- charts ---------- */
+/* money: everything is PLN inside; client € amounts go through P() */
+const P=e=>e/XR;
+const cv=p=>CUR==='PLN'?p:p*XR, ocv=p=>CUR==='PLN'?p*XR:p;
+const SYM=()=>CUR==='PLN'?'PLN':'€', OSYM=()=>CUR==='PLN'?'€':'PLN';
+function auto(v,sym,dk){const a=Math.abs(v);
+  if(a>=1e6)return fr(v/1e6,2)+NB+'M'+NB+sym;
+  if(a>=1e4)return fr(v/1000,dk)+NB+'k'+NB+sym;
+  return fr(v)+NB+sym}
+const F=p=>fr(cv(p))+NB+SYM();
+const K=p=>auto(cv(p),SYM(),1);
+const Kr=p=>auto(cv(p),SYM(),0);
+const alt=(p,dk=1)=>'≈'+NB+auto(ocv(p),OSYM(),dk);
+const altF=p=>'≈'+NB+fr(ocv(p))+NB+OSYM();
+function RANGE(lo,hi){const a=cv(lo),b=cv(hi),s=SYM();
+  return b>=1e6?fr(a/1e6,2)+'–'+fr(b/1e6,2)+NB+'M'+NB+s:fr(a/1000)+'–'+fr(b/1000)+NB+'k'+NB+s}
+function niceTop(max){const best={top:Infinity,step:0};
+  [4,5].forEach(st=>{const raw=max/st,mag=Math.pow(10,Math.floor(Math.log10(raw)));
+    [1,2,2.5,4,5,10].forEach(n=>{const step=n*mag;if(step>=raw&&step*st<best.top){best.top=step*st;best.step=step;best.st=st}})});
+  return best}
+const tickM=nt=>(v,isTop)=>{if(!v)return'0';let t;
+  if(nt.top>=1e6){const d=nt.step%1e6===0?0:nt.step%1e5===0?1:2;t=fr(v/1e6,d)+NB+'M'}else t=fr(v/1000)+NB+'k';
+  return isTop?t+NB+SYM():t};
+
+/* chart, drawn at the real pixel width so text stays readable */
 const NS='http://www.w3.org/2000/svg';
 function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e}
 function chart(id,o){
   const box=$(id);box.innerHTML='';
-  const W=o.W||560,H=o.H||240,L=o.L||60,R=14,T=12,B=26,pw=W-L-R,ph=H-T-B;
-  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':o.label},box);
+  const W=Math.max(300,box.clientWidth||o.W||560),narrow=W<520,H=o.H||(narrow?230:270);
+  const st=o.steps||4,ylab=Array.from({length:st+1},(_,i)=>o.fy(o.y1*i/st,i===st));
+  const L=Math.max(34,Math.ceil(Math.max(...ylab.map(t=>t.length))*6.4)+12),R=o.R!=null?o.R:14,T=14,B=30,pw=W-L-R,ph=H-T-B;
+  const svg=el('svg',{width:W,height:H,viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':o.label},box);
   const tip=document.createElement('div');tip.className='tip';box.appendChild(tip);
-  const x=v=>L+pw*(v-o.x0)/(o.x1-o.x0), y=v=>T+ph*(1-(v-(o.y0||0))/(o.y1-(o.y0||0)));
-  const st=o.steps||4;
-  for(let i=0;i<=st;i++){const v=(o.y0||0)+(o.y1-(o.y0||0))*i/st;el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:i?css('--grid'):css('--axis')},svg);const t=el('text',{x:L-8,y:y(v)+4,'text-anchor':'end',class:'num'},svg);t.textContent=o.fy(v)}
-  o.xt.forEach(v=>{const t=el('text',{x:x(v),y:H-7,'text-anchor':'middle'},svg);t.textContent=o.fx(v)});
-  (o.bands||[]).forEach(b=>{const up=b.hi.map((v,i)=>[x(b.xs[i]),y(v)]),dn=b.lo.map((v,i)=>[x(b.xs[i]),y(v)]).reverse();
-    el('path',{d:'M'+up.map(p=>p.join(',')).join('L')+'L'+dn.map(p=>p.join(',')).join('L')+'Z',fill:css('--band'),stroke:'none'},svg)});
-  o.series.forEach(s=>{const pts=s.ys.map((v,i)=>v==null?null:[x(s.xs[i]),y(v)]).filter(Boolean);
-    el('path',{d:pts.map((p,i)=>(i?'L':'M')+p[0]+','+p[1]).join(''),fill:'none',stroke:css(s.c),'stroke-width':s.w||2.25,'stroke-dasharray':s.dash||'','stroke-linejoin':'round','stroke-linecap':'round'},svg)});
-  (o.marks||[]).forEach(mk=>{el('circle',{cx:x(mk.x),cy:y(mk.y),r:5,fill:css('--red'),stroke:css('--surface'),'stroke-width':2.5},svg);
-    if(mk.t){const t=el('text',{x:x(mk.x)+(mk.a==='start'?9:-9),y:y(mk.y)-10,'text-anchor':mk.a||'end',style:`fill:${css('--ink')};font-weight:600;font-size:12px`},svg);t.textContent=mk.t}});
-  if(o.vline){el('line',{x1:x(o.vline),x2:x(o.vline),y1:T,y2:T+ph,stroke:css('--red'),'stroke-width':1,'stroke-dasharray':'3 3'},svg)}
-  const cross=el('line',{y1:T,y2:T+ph,stroke:css('--axis'),visibility:'hidden'},svg);
+  const y0=0,x=v=>L+pw*(v-o.x0)/(o.x1-o.x0),y=v=>T+ph*(1-(v-y0)/(o.y1-y0));
+  for(let i=0;i<=st;i++){const v=y0+(o.y1-y0)*i/st;el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:i?css('--grid'):css('--ink'),'stroke-width':1},svg);const t=el('text',{x:L-8,y:y(v)+4,'text-anchor':'end'},svg);t.textContent=ylab[i]}
+  let xt=o.xt;if(pw/xt.length<64)xt=xt.filter((_,i)=>i%2===0);
+  xt.forEach((v,i)=>{const s=o.fx(v,i===xt.length-1),end=x(v)+s.length*3.4>W;const t=el('text',{x:x(v),y:H-8,'text-anchor':end?'end':'middle'},svg);t.textContent=s});
+  (o.bands||[]).forEach(b=>{const up=b.hi.map((v,i)=>x(b.xs[i])+','+y(v)),dn=b.lo.map((v,i)=>x(b.xs[i])+','+y(v)).reverse();el('path',{d:'M'+up.join('L')+'L'+dn.join('L')+'Z',fill:css('--redtint')},svg)});
+  if(o.vline)el('line',{x1:x(o.vline),x2:x(o.vline),y1:T,y2:T+ph,stroke:css('--gray'),'stroke-width':1.5,'stroke-dasharray':'4 4'},svg);
+  o.series.forEach(s=>{const pts=s.ys.map((v,i)=>v==null?null:x(s.xs[i])+','+y(v)).filter(Boolean);el('path',{d:'M'+pts.join('L'),fill:'none',stroke:css(s.c),'stroke-width':s.w||2,'stroke-dasharray':s.dash||'','stroke-linejoin':'round'},svg)});
+  (o.marks||[]).forEach(m=>{if(m.x<o.x0||m.x>o.x1)return;const cx=x(m.x),cy=y(m.y);el('circle',{cx,cy,r:4,fill:css('--red')},svg);if(!m.t)return;
+    let a='end',tx=cx-9,ty=cy-10;
+    if(m.pos==='right'){a='start';tx=cx+9;ty=cy+4}
+    else if(cx-L<m.t.length*7.4+12){a='start';tx=cx+9;ty=cy+20}
+    const t=el('text',{x:tx,y:ty,'text-anchor':a,class:'lab'},svg);t.textContent=m.t});
+  const cross=el('line',{y1:T,y2:T+ph,stroke:css('--ink3'),'stroke-width':1,visibility:'hidden'},svg);
   const hit=el('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent'},svg);
-  function mv(e){const b=svg.getBoundingClientRect(),sx=(e.clientX-b.left)*W/b.width;let v=o.x0+(sx-L)/pw*(o.x1-o.x0);v=o.snap(v);
+  function mv(e){const b=svg.getBoundingClientRect(),sx=(e.clientX-b.left)*W/b.width;const v=o.snap(o.x0+(sx-L)/pw*(o.x1-o.x0));
     cross.setAttribute('x1',x(v));cross.setAttribute('x2',x(v));cross.setAttribute('visibility','visible');
-    tip.innerHTML=o.tip(v);tip.style.display='block';const cb=box.getBoundingClientRect();let px=b.left-cb.left+x(v)*b.width/W+12;if(px+tip.offsetWidth>cb.width)px-=tip.offsetWidth+24;tip.style.left=Math.max(0,px)+'px';tip.style.top='6px'}
+    tip.innerHTML=o.tip(v);tip.style.display='block';const cb=box.getBoundingClientRect();let px=b.left-cb.left+x(v)*b.width/W+12;if(px+tip.offsetWidth>cb.width)px-=tip.offsetWidth+24;tip.style.left=Math.max(0,px)+'px';tip.style.top='0px'}
   hit.addEventListener('pointermove',mv);hit.addEventListener('pointerdown',mv);
   hit.addEventListener('pointerleave',()=>{tip.style.display='none';cross.setAttribute('visibility','hidden')});
 }
-const cv=p=>CUR==='PLN'?p:p*XR;
-const unit=()=>CUR==='PLN'?'k PLN':'k €';
 
-/* ---------- overview ---------- */
-function overview(){
-  const pct=spent/BJAN*100, tp=15/31*100;
-  $('k1').textContent=mk(spent);$('k1m').style.width=pct+'%';$('k1t').style.left=tp+'%';
-  $('k1d').innerHTML=fr(pct,1)+' % du budget · '+fr(tp)+' % du mois passé <span class="pill ko">En retard</span>';
-  const eom=spent+pace*16;
-  $('k2').textContent=mk(eom);
-  $('k2d').innerHTML=fr(eom/BJAN*100)+' % du budget · il faudrait '+mf(need)+'/jour';
-  $('k3').innerHTML=fr(R_MID,1)+' <span style="font-size:13px;font-weight:500;color:var(--ink2)">vos chiffres</span>';
-  $('k3d').innerHTML='Nos chiffres : '+fr(sum(val)/sum(eur,0,14),1)+' <span class="pill warn">Écart de mesure en analyse</span>';
-  $('k4').textContent=eurk(sum(cval));
-  $('k4d').innerHTML='≈ '+fr(sum(cval)/XR/1000)+NB+'k PLN · '+fr(sum(cconv))+' commandes · nos chiffres : '+eurk(sum(val));
-  const days=Array.from({length:31},(_,i)=>i+1);
-  const cum=[];let c=0;spend.forEach(v=>cum.push(c+=v));
-  const proj=days.map(d=>d<15?null:spent+pace*(d-15));
-  const ideal=days.map(d=>BJAN/31*d);
-  const endv=spent+pace*16;
-  chart('c1',{label:'Dépense cumulée de janvier',x0:1,x1:31,y1:cv(160000),xt:[1,8,15,22,31],fx:d=>d+' janv.',fy:v=>fr(v/1000)+' '+unit(),
-    series:[{xs:days,ys:ideal.map(cv),c:'--gray',dash:'5 5',w:1.75},{xs:days,ys:proj.map(v=>v==null?null:cv(v)),c:'--red',dash:'5 4',w:2},{xs:days.slice(0,15),ys:cum.map(cv),c:'--red'}],
-    marks:[{x:31,y:cv(endv),t:mk(endv)}],snap:v=>Math.max(1,Math.min(31,Math.round(v))),
-    tip:d=>{const real=d<=15,v=real?cum[d-1]:spent+pace*(d-15);return `<b>${d} janvier${real?'':' · projection'}</b><div>Cumulé <em>${mk(v)}</em></div><div>Pour tout dépenser <em>${mk(ideal[d-1])}</em></div>`}});
+/* suivi */
+function suivi(){
+  const pct=spent/BJAN*100,tp=15/31*100,eom=spent+pace*16;
+  $('s1').innerHTML=K(spent)+' <small>sur '+K(BJAN)+'</small>';
+  $('s1x').textContent=alt(spent)+' sur '+auto(ocv(BJAN),OSYM(),1);
+  $('s1bar').style.width=pct+'%';$('s1mark').style.left=tp+'%';
+  $('s1n').innerHTML='<span class="late">'+fr(pct,1)+' % du budget</span> alors que '+fr(tp)+' % du mois est passé.';
+  $('s2').textContent=K(eom);$('s2x').textContent=alt(eom);
+  $('s2n').textContent='Il faudrait '+F(need)+' par jour ('+altF(need)+') pour tout dépenser.';
+  $('s3').innerHTML=fr(R_MID,1)+' <small>vos chiffres</small>';
+  $('s3n').innerHTML='<span class="late">'+fr(sum(val)/sum(eur,0,14),1)+'</span> selon nos chiffres, pour les mêmes publicités.';
+  $('s4').textContent=Kr(P(sum(cval)));$('s4x').textContent=alt(P(sum(cval)),0);
+  $('s4n').textContent=fr(sum(cconv))+' commandes selon vous, '+fr(sum(conv))+' selon nous ('+Kr(P(sum(val)))+').';
+  const days=Array.from({length:31},(_,i)=>i+1),cum=[];let c=0;spend.forEach(v=>cum.push(c+=v));
+  const proj=days.map(d=>d<15?null:spent+pace*(d-15)),ideal=days.map(d=>BJAN/31*d);
+  const n1=niceTop(cv(BJAN*1.02));
+  chart('c1',{label:'Dépense cumulée de janvier',x0:1,x1:31,y1:n1.top,steps:n1.st,R:96,xt:[1,8,15,22,31],fx:d=>d+' janv.',fy:tickM(n1),
+    series:[{xs:days,ys:ideal.map(cv),c:'--gray',dash:'4 4',w:1.5},{xs:days,ys:proj.map(v=>v==null?null:cv(v)),c:'--red',dash:'5 4',w:1.75},{xs:days.slice(0,15),ys:cum.map(cv),c:'--red',w:2.25}],
+    marks:[{x:31,y:cv(eom),t:K(eom),pos:'right'}],snap:v=>Math.max(1,Math.min(31,Math.round(v))),
+    tip:d=>{const r=d<=15,v=r?cum[d-1]:spent+pace*(d-15);return `<b>${d} janvier${r?'':', projection'}</b><div>Cumul <em>${K(v)}</em></div><div>Rythme cible <em>${K(ideal[d-1])}</em></div>`}});
   const d14=days.slice(0,14);
   chart('c2',{label:'ROAS jour par jour',x0:1,x1:14,y1:50,steps:5,xt:[1,4,7,10,14],fx:d=>d+' janv.',fy:v=>fr(v),
-    series:[{xs:d14,ys:d14.map(()=>40),c:'--gray',dash:'5 5',w:1.75},{xs:d14,ys:roasC,c:'--char'},{xs:d14,ys:roasR,c:'--red'}],
+    series:[{xs:d14,ys:d14.map(()=>40),c:'--gray',dash:'4 4',w:1.5},{xs:d14,ys:roasC,c:'--ink'},{xs:d14,ys:roasR,c:'--red'}],
     snap:v=>Math.max(1,Math.min(14,Math.round(v))),
-    tip:d=>`<b>${d} janvier</b><div>Vos chiffres <em>${fr(roasC[d-1],1)}</em></div><div>Nos chiffres <em>${fr(roasR[d-1],1)}</em></div><div>Dépense <em>${mf(spend[d-1])}</em></div>`});
-  const w=[[0,7],[7,14]].map(([s,e])=>{const sp=sum(spend,s,e),se=sp*XR;return{sp,cl:sum(clk,s,e),cp:sum(comp,s,e),cv:sum(conv,s,e),ccv:sum(cconv,s,e),r:sum(val,s,e)/se,rc:sum(cval,s,e)/se}});
-  const ev=(a,b)=>{const v=(b-a)/a*100;return `<span class="${v>=0?'up':'down'}">${v>=0?'+':''}${fr(v)} %</span>`};
-  const rows=[['Dépense',x=>mf(x.sp)+' <span style="color:var(--muted)">· '+mf2(x.sp)+'</span>','sp'],['Clics',x=>fr(x.cl),'cl'],['Commandes · vos chiffres',x=>fr(x.ccv),'ccv'],['Commandes · nos chiffres',x=>fr(x.cv),'cv'],['ROAS · vos chiffres',x=>fr(x.rc,1),'rc'],['ROAS · nos chiffres',x=>fr(x.r,1),'r'],["Clics de l'autre retargeter",x=>fr(x.cp),'cp']];
-  $('weeks').innerHTML='<tr><th></th><th>Semaine 1 · 1–7 janv.</th><th>Semaine 2 · 8–14 janv.</th><th>Évolution</th></tr>'+rows.map(([l,f,k])=>`<tr><td>${l}</td><td class="num">${f(w[0])}</td><td class="num">${f(w[1])}</td><td class="num">${ev(w[0][k],w[1][k])}</td></tr>`).join('');
+    tip:d=>`<b>${d} janvier</b><div>Vos chiffres <em>${fr(roasC[d-1],1)}</em></div><div>Nos chiffres <em>${fr(roasR[d-1],1)}</em></div><div>Dépense <em>${F(spend[d-1])}</em></div>`});
+  const w=[[0,7],[7,14]].map(([s,e])=>{const sp=sum(spend,s,e),se=sp*XR;return[sp,sum(clk,s,e),sum(cconv,s,e),sum(conv,s,e),sum(cval,s,e)/se,sum(val,s,e)/se,sum(comp,s,e)]});
+  const lab=['Dépense','Clics','Commandes, vos chiffres','Commandes, nos chiffres','ROAS, vos chiffres','ROAS, nos chiffres',"Clics de l'autre retargeter"];
+  const fmt=[F,fr,fr,fr,v=>fr(v,1),v=>fr(v,1),fr];
+  $('weeks').innerHTML='<tr><th></th><th class="n">1–7 janv.</th><th class="n">8–14 janv.</th><th class="n">Évolution</th></tr>'+lab.map((l,i)=>{const a=w[0][i],b=w[1][i],ch=(b-a)/a*100;return `<tr><td>${l}</td><td class="n">${fmt[i](a)}</td><td class="n">${fmt[i](b)}</td><td class="n ${ch>=0?'pos':'neg'}">${ch>=0?'+':'−'}${fr(Math.abs(ch))} %</td></tr>`}).join('');
 }
 
-/* ---------- simulator ---------- */
-function card(lab,val,foot,hl){return `<div class="${hl?'hl':''}"><div class="lab">${lab}</div><div class="val num">${val}</div><div class="foot">${foot}</div></div>`}
-function simJan(){
-  const d=+$('daily').value, total=spent+d*16, f=factor(d);
-  const lo=R_LO*f, hi=R_HI*f, e=d*16*XR;
-  $('o_daily').textContent=mf(d)+' · '+mf2(d);
-  const gap=BJAN-total;
-  $('res').innerHTML=
-    card('Dépense totale de janvier',mk(total),fr(total/BJAN*100)+' % du budget · '+mk2(total),true)+
-    card(gap>0?'Non dépensé fin janvier':'Au-dessus du budget',mk(Math.abs(gap)),gap>0?mk2(gap):'à valider ensemble')+
-    card('Ventes du 16 au 31 janvier',fr(e*lo/1000)+'–'+fr(e*hi/1000)+NB+'k €','selon vos chiffres')+
-    card('ROAS attendu',fr(lo,1)+'–'+fr(hi,1),'objectif 40 · vos chiffres');
-  $('simTitle').textContent='Fin de janvier';$('simSub').textContent='Choisissez combien dépenser par jour du 16 au 31 janvier.';
-  $('chTitle').textContent='Ventes attendues selon la dépense par jour';$('chSub').textContent='Du 16 au 31 janvier, selon vos chiffres, en fonction de la dépense par jour. La zone rouge montre la fourchette.';
-  $('chLeg').innerHTML='<span><i class="bnd"></i>Fourchette</span><span><i class="sw" style="background:var(--red)"></i>Estimation centrale</span><span><i class="dsh"></i>Rythme pour tout dépenser</span>';
-  const xs=[];for(let v=2000;v<=8000;v+=250)xs.push(v);
-  const S=v=>v*16*XR, mid=v=>S(v)*R_MID*factor(v);
-  const ymj=Math.ceil(S(8000)*R_HI*factor(8000)/250000)*250000;
-  chart('c3',{label:'Ventes attendues selon la dépense',W:760,H:290,x0:2000,x1:8000,y0:0,y1:ymj,L:70,xt:[2000,3553,6044,8000],fx:v=>CUR==='PLN'?fr(v)+' PLN':fr(v*XR)+' €',fy:v=>fr(v/1000)+' k €',
-    bands:[{xs,lo:xs.map(v=>S(v)*R_LO*factor(v)),hi:xs.map(v=>S(v)*R_HI*factor(v))}],
-    series:[{xs,ys:xs.map(mid),c:'--red'}],vline:6044,
-    marks:[{x:d,y:mid(d),t:eurk(mid(d)),a:d>6500?'end':'start'}],snap:v=>Math.round(Math.max(2000,Math.min(8000,v))/50)*50,
-    tip:v=>`<b>${mf(v)} par jour</b><div>Ventes estimées <em>${eurk(mid(v))}</em></div><div>Fourchette <em>${eurk(S(v)*R_LO*factor(v))} – ${eurk(S(v)*R_HI*factor(v))}</em></div><div>ROAS <em>${fr(R_MID*factor(v),1)}</em></div>`});
+/* simulateur */
+function cmpTable(head,rows){
+  $('cmp').innerHTML=`<tr><th></th><th class="n">${head[0]}</th><th class="n">${head[1]}</th><th class="n">Écart</th></tr>`+rows.map(r=>`<tr class="${r.em?'em':''}"><td>${r.l}</td><td class="n">${r.a}</td><td class="n">${r.b}</td><td class="n ${r.nt?'':(r.good?'pos':'neg')}">${r.d}</td></tr>`).join('');
 }
-function simFeb(){
-  const B=+$('bud').value, p=+$('newp').value/100, cpa=+$('cpa').value, days=28;
-  const ret=B*(1-p), nw=B*p, dRet=ret/days, f=factor(dRet);
-  const eRet=ret*XR, sLo=eRet*R_LO*f, sHi=eRet*R_HI*f, sMid=eRet*R_MID*f;
-  const nMid=nw*XR/cpa, nLo=nMid/1.2, nHi=nMid/0.8;
-  const totMid=sMid+nMid*AOV, roasG=totMid/(B*XR);
-  $('o_bud').textContent=mf(B)+' · '+mf2(B);
-  $('o_new').textContent=fr(p*100)+' % · '+mf(nw);
-  $('o_cpa').textContent=fr(cpa)+NB+'€';
-  $('res').innerHTML=
-    card('Dépense par jour',mf(dRet+nw/days),mf2(dRet+nw/days)+' · sur 28 jours',true)+
-    card('Ventes retargeting',fr(sLo/1000)+'–'+fr(sHi/1000)+NB+'k €','ROAS '+fr(R_LO*f,1)+' à '+fr(R_HI*f,1)+' · vos chiffres')+
-    card('Nouveaux clients',p?fr(nLo)+'–'+fr(nHi):'—',p?'avec '+mf(nw)+' à '+cpa+NB+'€ le client':'pas de budget dédié')+
-    card('ROAS global estimé',fr(roasG,1),'retargeting + premiers achats · objectif 40');
-  $('simTitle').textContent='Février';$('simSub').textContent='Préparez le mois prochain : budget, part pour les nouveaux clients et coût cible.';
-  $('chTitle').textContent='Ventes attendues selon le budget du mois';$('chSub').textContent='Retargeting + premiers achats des nouveaux clients, selon vos chiffres. Plus le budget monte, plus chaque euro rapporte un peu moins.';
-  $('chLeg').innerHTML='<span><i class="bnd"></i>Fourchette</span><span><i class="sw" style="background:var(--red)"></i>Estimation centrale</span><span><i class="dsh"></i>Budget actuel (150 000 PLN)</span>';
+const diff=(a,b,fmt,upGood=true)=>{const d=b-a;if(Math.abs(d)<=Math.max(Math.abs(a),Math.abs(b))*0.002)return{d:'=',nt:true};return{d:(d>0?'+':'−')+fmt(Math.abs(d)),good:(d>0)===upGood}};
+function jan(){
+  const d=+$('n_daily').value;$('r_daily').value=d;$('a_daily').textContent='≈'+NB+fr(d*XR)+NB+'€';
+  const sc=v=>{const tot=spent+v*16,ff=f(v),sp=v*16;return{v,tot,share:tot/BJAN*100,gap:Math.max(0,BJAN-tot),lo:R_LO*ff,hi:R_HI*ff,mid:R_MID*ff,sLo:sp*R_LO*ff,sHi:sp*R_HI*ff,s:sp*R_MID*ff}};
+  const a=sc(pace),b=sc(d);
+  $('warn').textContent=b.tot>BJAN*1.002?'Ce rythme dépasse le budget de janvier de '+K(b.tot-BJAN)+'. Il faudrait l’augmenter.':'';
+  cmpTable(['Rythme actuel','Votre scénario'],[
+    {l:'Dépense par jour',a:F(a.v),b:F(b.v),...diff(a.v,b.v,F)},
+    {l:'Total dépensé en janvier',a:K(a.tot),b:K(b.tot),...diff(a.tot,b.tot,K),em:true},
+    {l:'Part du budget',a:fr(a.share)+' %',b:fr(b.share)+' %',...diff(a.share,b.share,v=>fr(v)+' pts')},
+    {l:'Budget non dépensé',a:K(a.gap),b:K(b.gap),...diff(a.gap,b.gap,K,false)},
+    {l:'ROAS attendu, vos chiffres',a:fr(a.lo,1)+'–'+fr(a.hi,1),b:fr(b.lo,1)+'–'+fr(b.hi,1),...diff(a.mid,b.mid,v=>fr(v,1))},
+    {l:'Ventes du 16 au 31',a:RANGE(a.sLo,a.sHi),b:RANGE(b.sLo,b.sHi),...diff(a.s,b.s,Kr),em:true},
+  ]);
+  $('ch_t').textContent='Plus on dépense, plus on vend, un peu moins vite';
+  $('ch_s').textContent='Ventes attendues du 16 au 31 janvier selon la dépense par jour, d’après vos chiffres.';
+  $('ch_ref').textContent='Pour tout dépenser, '+F(6044)+' par jour';
+  const xs=[];for(let v=2000;v<=8000;v+=200)xs.push(v);
+  const S=v=>v*16, g=(v,r)=>S(v)*r*f(v);
+  const nt=niceTop(cv(g(8000,R_HI)));
+  chart('c3',{label:'Ventes attendues selon la dépense par jour',x0:2000,x1:8000,y1:nt.top,steps:nt.st,xt:[2000,4000,6000,8000],fx:(v,last)=>fr(cv(v))+(last?NB+SYM()+' par jour':''),fy:tickM(nt),
+    bands:[{xs,lo:xs.map(v=>cv(g(v,R_LO))),hi:xs.map(v=>cv(g(v,R_HI)))}],series:[{xs,ys:xs.map(v=>cv(g(v,R_MID))),c:'--red'}],vline:6044,
+    marks:[{x:d,y:cv(g(d,R_MID)),t:Kr(g(d,R_MID))}],snap:v=>Math.round(Math.max(2000,Math.min(8000,v))/50)*50,
+    tip:v=>`<b>${F(v)} par jour</b><div>Ventes <em>${Kr(g(v,R_MID))}</em></div><div>Fourchette <em>${RANGE(g(v,R_LO),g(v,R_HI))}</em></div><div>ROAS <em>${fr(R_MID*f(v),1)}</em></div>`});
+}
+function feb(){
+  const B=+$('n_bud').value,p=+$('n_new').value/100,cpa=Math.max(1,+$('n_cpa').value);
+  $('r_bud').value=B;$('r_new').value=p*100;$('r_cpa').value=cpa;
+  $('a_bud').textContent='≈'+NB+auto(B*XR,'€',1);$('a_new').textContent='soit '+F(B*p);
+  const sc=(b,pp)=>{const ret=b*(1-pp),nw=b*pp,ff=f(ret/28),n=nw*XR/cpa,nv=P(n*AOV),rs=ret*R_MID*ff,tot=rs+nv;
+    return{b,day:b/28,nw,roasLo:R_LO*ff,roasHi:R_HI*ff,rs,rsLo:ret*R_LO*ff,rsHi:ret*R_HI*ff,n,nLo:n/1.2,nHi:n/0.8,tot,roas:tot/b}};
+  const a=sc(150000,0),b=sc(B,p);
+  cmpTable(['Comme en janvier','Votre scénario'],[
+    {l:'Budget du mois',a:K(a.b),b:K(b.b),...diff(a.b,b.b,K)},
+    {l:'Dépense par jour',a:F(a.day),b:F(b.day),...diff(a.day,b.day,F)},
+    {l:'Dont nouveaux clients',a:K(a.nw),b:K(b.nw),...diff(a.nw,b.nw,K)},
+    {l:'ROAS retargeting, vos chiffres',a:fr(a.roasLo,1)+'–'+fr(a.roasHi,1),b:fr(b.roasLo,1)+'–'+fr(b.roasHi,1),...diff((a.roasLo+a.roasHi)/2,(b.roasLo+b.roasHi)/2,v=>fr(v,1))},
+    {l:'Ventes retargeting',a:RANGE(a.rsLo,a.rsHi),b:RANGE(b.rsLo,b.rsHi),...diff(a.rs,b.rs,Kr)},
+    {l:'Nouveaux clients',a:'0',b:b.n?fr(b.nLo)+'–'+fr(b.nHi):'0',...diff(a.n,b.n,v=>fr(v))},
+    {l:'Ventes totales estimées',a:Kr(a.tot),b:Kr(b.tot),...diff(a.tot,b.tot,Kr),em:true},
+    {l:'ROAS global',a:fr(a.roas,1),b:fr(b.roas,1),...diff(a.roas,b.roas,v=>fr(v,1))},
+  ]);
+  $('ch_t').textContent='Chaque euro en plus rapporte un peu moins';
+  $('ch_s').textContent='Ventes estimées de février selon le budget, avec votre part pour les nouveaux clients.';
+  $('ch_ref').textContent='Budget actuel, '+F(150000);
   const xs=[];for(let v=50000;v<=300000;v+=10000)xs.push(v);
-  const calc=(b,r)=>{const rt=b*(1-p),ff=factor(rt/days);return rt*XR*r*ff+(b*p*XR/cpa)*AOV};
-  const lo=b=>{const rt=b*(1-p),ff=factor(rt/days);return rt*XR*R_LO*ff+(b*p*XR/cpa/1.2)*AOV};
-  const hi=b=>{const rt=b*(1-p),ff=factor(rt/days);return rt*XR*R_HI*ff+(b*p*XR/cpa/0.8)*AOV};
-  const ymax=Math.ceil(hi(300000)/500000)*500000;
-  chart('c3',{label:'Ventes attendues selon le budget',W:760,H:290,x0:50000,x1:300000,y0:0,y1:ymax,L:70,xt:[50000,100000,150000,200000,250000,300000],fx:v=>fr(cv(v)/1000)+' '+unit(),fy:v=>fr(v/1e6,1)+' M €',
-    bands:[{xs,lo:xs.map(lo),hi:xs.map(hi)}],series:[{xs,ys:xs.map(b=>calc(b,R_MID)),c:'--red'}],vline:150000,
-    marks:[{x:B,y:calc(B,R_MID),t:fr(calc(B,R_MID)/1000)+NB+'k €',a:B>220000?'end':'start'}],snap:v=>Math.round(Math.max(50000,Math.min(300000,v))/5000)*5000,
-    tip:b=>`<b>Budget ${mf(b)}</b><div>Ventes estimées <em>${eurk(calc(b,R_MID))}</em></div><div>Fourchette <em>${eurk(lo(b))} – ${eurk(hi(b))}</em></div><div>ROAS global <em>${fr(calc(b,R_MID)/(b*XR),1)}</em></div>`});
+  const g=(bb,r,nd)=>{const ret=bb*(1-p),ff=f(ret/28);return ret*r*ff+P(bb*p*XR/cpa/nd*AOV)};
+  const nt=niceTop(cv(g(300000,R_HI,0.8)));
+  chart('c3',{label:'Ventes estimées selon le budget',x0:50000,x1:300000,y1:nt.top,steps:nt.st,xt:[50000,100000,150000,200000,250000,300000],fx:(v,last)=>fr(cv(v)/1000)+NB+'k'+(last?NB+SYM():''),fy:tickM(nt),
+    bands:[{xs,lo:xs.map(v=>cv(g(v,R_LO,1.2))),hi:xs.map(v=>cv(g(v,R_HI,0.8)))}],series:[{xs,ys:xs.map(v=>cv(g(v,R_MID,1))),c:'--red'}],vline:150000,
+    marks:[{x:B,y:cv(g(B,R_MID,1)),t:Kr(g(B,R_MID,1))}],snap:v=>Math.round(Math.max(50000,Math.min(300000,v))/5000)*5000,
+    tip:v=>`<b>Budget ${K(v)}</b><div>Ventes <em>${Kr(g(v,R_MID,1))}</em></div><div>Fourchette <em>${RANGE(g(v,R_LO,1.2),g(v,R_HI,0.8))}</em></div><div>ROAS global <em>${fr(g(v,R_MID,1)/v,1)}</em></div>`});
 }
-function sim(){ $('f-jan').style.display=MODE==='jan'?'':'none'; $('f-feb').style.display=MODE==='feb'?'':'none'; MODE==='jan'?simJan():simFeb() }
+function sim(){$('in-jan').style.display=MODE==='jan'?'':'none';$('in-feb').style.display=MODE==='feb'?'':'none';MODE==='jan'?jan():feb()}
 
-/* ---------- plan ---------- */
-const actions=[
-  ['Vérifier notre tag : cookies, doublons, montant','Notre expert technique · semaine 1','En cours','warn'],
-  ['Comparer vos commandes et les nôtres','Dès réception de votre export','En attente de vous','inf'],
-  ['Une seule règle de mesure, écrite','À valider ensemble lundi','Prévu','inf'],
-  ['Vérifier les plafonds de budget quotidiens','Semaine 1','En cours','warn'],
-  ['Enchères par segment, audiences élargies','Semaines 1–2','Prévu','inf'],
-  ['Pousser vos produits les plus rentables','Semaines 1–2','Prévu','inf'],
-  ['Couper les sites qui dépensent sans vendre','Semaines 1–2','Prévu','inf'],
-  ['Test A/B de nouvelles pubs','Semaines 1–2','Prévu','inf'],
-  ["Relancer l'in-app, régler la fréquence","Après votre retour sur l'arrêt du 4 janvier",'En attente de vous','inf'],
-  ['Test nouveaux clients · 4 semaines','Semaine 2, après votre feu vert','Prévu','inf'],
-  ["Facture d'octobre : réponse écrite",'Sous 48 h, avec notre Finance','En cours','warn'],
+/* plan */
+const ACT=[
+  ['Vérifier notre tag : bandeau cookies, doublons, montant envoyé','Notre équipe technique','Semaine 1','go'],
+  ['Comparer vos commandes et les nôtres, une par une','Vous et nous','Dès votre export','you'],
+  ['Écrire une règle de mesure commune','Vous et nous','Lundi','plan'],
+  ['Contrôler les plafonds de budget quotidiens','Nous','Semaine 1','go'],
+  ['Enchérir par segment et élargir les audiences','Nous','Semaines 1 et 2','plan'],
+  ['Mettre en avant vos produits les plus rentables','Nous, avec votre flux produits','Semaines 1 et 2','plan'],
+  ['Retirer les sites qui dépensent sans vendre','Nous','Semaines 1 et 2','plan'],
+  ['Tester de nouvelles publicités (A/B)','Nous','Semaines 1 et 2','plan'],
+  ["Relancer l'in-app et régler la fréquence","Nous, après votre retour",'Semaine 2','you'],
+  ['Test nouveaux clients sur 4 semaines','Nous, après votre accord','À partir de la semaine 2','plan'],
+  ["Répondre sur la facture d'octobre",'Votre Account Manager et notre Finance','Sous 48 heures','go'],
 ];
-$('actions').innerHTML=actions.map(([t,s,st,c])=>`<li><div><div class="t">${t}</div><div class="s">${s}</div></div><span class="pill ${c}">${st}</span></li>`).join('');
+const ST={go:['s-go','En cours'],you:['s-you','Dépend de vous'],plan:['s-plan','Prévu']};
+$('acts').innerHTML='<tr><th>Action</th><th>Qui</th><th>Quand</th><th>Statut</th></tr>'+ACT.map(([a,q,w,s])=>`<tr><td class="w">${a}</td><td style="text-align:left">${q}</td><td style="text-align:left">${w}</td><td><span class="status ${ST[s][0]}"><i></i>${ST[s][1]}</span></td></tr>`).join('');
+document.querySelectorAll('#acts th').forEach((th,i)=>{if(i>0&&i<3)th.style.textAlign='left'});
 
-/* ---------- wiring ---------- */
-function render(){overview();sim()}
-document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{CUR=b.dataset.c;document.querySelectorAll('.seg button').forEach(x=>x.classList.toggle('on',x===b));render()}));
-document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.v));render()}));
-document.querySelectorAll('.modes button').forEach(b=>b.addEventListener('click',()=>{MODE=b.dataset.m;document.querySelectorAll('.modes button').forEach(x=>x.classList.toggle('on',x===b));sim()}));
-document.querySelectorAll('.quick button[data-d]').forEach(b=>b.addEventListener('click',()=>{$('daily').value=b.dataset.d;sim()}));
-document.querySelectorAll('.quick button[data-b]').forEach(b=>b.addEventListener('click',()=>{$('bud').value=b.dataset.b;sim()}));
-['daily','bud','newp','cpa'].forEach(id=>$(id).addEventListener('input',sim));
+/* wiring */
+function render(){suivi();sim()}
+document.querySelectorAll('.toggle button').forEach(b=>b.addEventListener('click',()=>{CUR=b.dataset.c;document.querySelectorAll('.toggle button').forEach(x=>x.classList.toggle('on',x===b));render()}));
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.v));render()}));
+document.querySelectorAll('.period button').forEach(b=>b.addEventListener('click',()=>{MODE=b.dataset.m;document.querySelectorAll('.period button').forEach(x=>x.classList.toggle('on',x===b));sim()}));
+document.querySelectorAll('.links button').forEach(b=>b.addEventListener('click',()=>{$('n_daily').value=b.dataset.d;sim()}));
+const pair=(n,r)=>{$(r).addEventListener('input',()=>{$(n).value=$(r).value;sim()});$(n).addEventListener('input',()=>{if($(n).value!=='')sim()})};
+pair('n_daily','r_daily');pair('n_bud','r_bud');pair('n_new','r_new');pair('n_cpa','r_cpa');
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',render);
-$('daily').value=3553;$('bud').value=150000;$('newp').value=10;$('cpa').value=30;
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(render,120)});
+$('n_daily').value=6044;$('n_bud').value=150000;$('n_new').value=10;$('n_cpa').value=30;
 render();
 </script>
 </body>
