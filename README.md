@@ -1,6 +1,5 @@
-# Elektronik.de · Tableau de bord hebdo (maquette)
+# Suivi Elektronik.de
 
-Maquette d'un tableau de bord client, préparée par Thomas Germain pour un case study d'Account Management.
-Client fictif, chiffres fournis dans le case. Les projections sont des estimations, pas des engagements.
+Maquette de tableau de suivi préparée par Thomas Germain pour le case study Account Manager de RTB House (octobre 2026). Ce n'est pas un outil officiel RTB House.
 
-Site statique : un seul fichier `index.html`, aucune installation ni build nécessaires.
+Un seul fichier, `index.html`, sans dépendance. Les coches et les saisies sont gardées dans le navigateur (localStorage).
